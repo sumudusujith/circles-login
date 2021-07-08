@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Box, Heading, Button } from 'rebass'
-import { Label, Input, } from '@rebass/forms'
+import { Label, Input } from '@rebass/forms'
 
 
 export const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setemail] = useState("");
+    const [password, setpassword] = useState("");
 
     // function validateForm() {
     //   return email.length > 0 && password.length > 0;
@@ -27,13 +27,13 @@ export const Login = () => {
                 sx={{
                     px: 3,
                     py: 5,
-                    backgroundImage: 'url(https://source.unsplash.com/random/1024x768?sky)',
+                    backgroundColor: "grey",
                     backgroundSize: 'cover',
                     borderRadius: 8,
-                    color: 'white',
+                    color: 'black',
                     bg: 'gray',
                 }}>
-                <Heading fontFamily='Verdana'fontSize={[3]} color="primary">
+                <Heading fontFamily='Verdana' fontSize={[3]} color="primary">
                     Login to pick a Challenge!
                 </Heading>
 
@@ -43,7 +43,7 @@ export const Login = () => {
                 <Label fontFamily='Candara' htmlFor='email'>Email </Label>
                 <Input
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setemail(e.target.value)}
                     id='email'
                     name='email'
                     type='email'
@@ -51,17 +51,19 @@ export const Login = () => {
 
 
                 />
-                <Label  fontFamily='Candara' htmlFor='password'>Password</Label>
-                <Input
-                    id='password'
-                    name='password'
-                    type='password'
-                    placeholder='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                <Box width={[1, 1, 1 / 2]}>
+                    <Label fontFamily='Candara' htmlFor='password'>Password</Label>
+                    <Input
+                        value={password}
+                        onChange={(e) => setpassword(e.target.value)}
+                        id='password'
+                        name='password'
+                        type='password'
+                        placeholder='password'
 
-                />
 
+                    />
+                </Box>
                 <Box>
 
                     <Button bg="#1a75ff" onClick={loginClicked}>
