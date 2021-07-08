@@ -19,28 +19,28 @@ export const Login = () => {
 
     return (
         <div>
-            <Heading fontSize={[7]} color='primary'>
+            <Heading fontFamily='Verdana' fontSize={[4]} color='primary'>
                 Ready to take  a Challenge?
             </Heading>
 
             <Box
                 sx={{
-                    px: 4,
-                    py: 6,
+                    px: 3,
+                    py: 5,
                     backgroundImage: 'url(https://source.unsplash.com/random/1024x768?sky)',
                     backgroundSize: 'cover',
                     borderRadius: 8,
                     color: 'white',
                     bg: 'gray',
                 }}>
-                <Heading fontSize={[3]} color="primary">
+                <Heading fontFamily='Verdana'fontSize={[3]} color="primary">
                     Login to pick a Challenge!
                 </Heading>
 
 
 
 
-                <Label htmlFor='email'>Email </Label>
+                <Label fontFamily='Candara' htmlFor='email'>Email </Label>
                 <Input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -51,7 +51,7 @@ export const Login = () => {
 
 
                 />
-                <Label htmlFor='password'>Password</Label>
+                <Label  fontFamily='Candara' htmlFor='password'>Password</Label>
                 <Input
                     id='password'
                     name='password'
@@ -64,7 +64,7 @@ export const Login = () => {
 
                 <Box>
 
-                    <Button bg="blue" onClick={loginClicked}>
+                    <Button bg="#1a75ff" onClick={loginClicked}>
                         Login
                     </Button>
                 </Box>
