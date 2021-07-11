@@ -1,8 +1,14 @@
-import React, { useState } from "react";
-import { Box, Heading, Button } from 'rebass'
-import { Label, Input,Switch } from '@rebass/forms'
-//import PropTypes from 'prop-types';
 
+import React, { useState } from "react";
+import { Box, Heading, Button, Link } from "rebass";
+import { Label as Text, Input } from "@rebass/forms";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    useHistory,
+} from "react-router-dom";
+import { Dashboard } from "./Dashboard";
 
 // async function loginUser(credentials) {
 //     return fetch('http://localhost:8080/login', {
@@ -14,11 +20,21 @@ import { Label, Input,Switch } from '@rebass/forms'
 //     })
 //       .then(data => data.json())
 //    }
-
 export const Login = () => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
+
+    const [responseMessage, setResponseMessage] = useState("");
+
+    const history = useHistory();
+
     const BASE_URL = "http://localhost:5000";
+
+    // Function to execute when login button is clicked
+    // function loginClicked() {
+    //   console.log("Login Clicked");
+    //   console.log("Email : " + userName);
+    //   console.log("Password : " + passWord);
 
     function loginClicked() {
         console.log("Login Clicked");
@@ -26,16 +42,29 @@ export const Login = () => {
         console.log("Password : " + password);
 
         fetch(BASE_URL + `/user-service/login/${email}/${password}`)
-        .then((response) => response.json())
-        // .then((data) => console.log(data));
-        .then(function setValues(response) {
-          if (response.status === "success") {
-            console.log(response);
-          } else {
-            console.log(response);
-          }
-        });
+            .then((response) => response.json())
+            .then(function setValues(response) {
+                if (response.status === "success") {
+                    console.log(response);
+                    history.push("/dashboard");
+                } else {
+                    console.log(response);
+                    setResponseMessage("Please recheck your login credentials.");
+                }
+            });
     }
+
+    //     fetch(BASE_URL + `/user-service/login/${email}/${password}`)
+    //     .then((response) => response.json())
+    //     // .then((data) => console.log(data));
+    //     .then(function setValues(response) {
+    //       if (response.status === "success") {
+    //         console.log(response);
+    //       } else {
+    //         console.log(response);
+    //       }
+    //     });
+    // }
 
     // export const Login = ({setToken}) => {
     //     const [email, setemail] = useState("");
@@ -59,7 +88,8 @@ export const Login = () => {
     // }
 
     return (
-        <div>
+        <Router>
+            {/* <div> */}
             <Heading fontFamily='Verdana' fontSize={[4]} color='primary'>
                 Ready to take  a Challenge?
             </Heading>
@@ -81,7 +111,7 @@ export const Login = () => {
 
 
 
-                <Label fontFamily='Candara' htmlFor='email'>Email </Label>
+                <Text fontFamily='Candara' htmlFor='email'>Email </Text>
                 <Input
                     value={email}
                     onChange={(e) => setemail(e.target.value)}
@@ -93,7 +123,7 @@ export const Login = () => {
 
                 />
                 <Box width={[1, 1, 1 / 2]}>
-                    <Label fontFamily='Candara' htmlFor='password'>Password</Label>
+                    <Text fontFamily='Candara' htmlFor='password'>Password</Text>
                     <Input
                         value={password}
                         onChange={(e) => setpassword(e.target.value)}
@@ -114,7 +144,11 @@ export const Login = () => {
             </Box>
 
 
-        </div>
+            <Switch>
+                <Route exact path="/dashboard" component={Dashboard} />
+            </Switch>
+
+        </Router>
         //     <div>
         //     <Heading fontSize={[6]} color="primary">
         //       Ready to take a challenge?

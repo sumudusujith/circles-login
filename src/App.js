@@ -1,28 +1,26 @@
-// import "./App.css";
-import React, { useState } from 'react';
+import "./App.css";
 import { ThemeProvider } from "@emotion/react";
 import theme from "@rebass/preset";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 import { Login } from "./components/pages/Login";
-//import { Dashboard } from "./components/pages/Dashboard";
+import { Dashboard } from "./components/pages/Dashboard";
 
 function App() {
-  // const [token, setToken] = useState();
-  // if(!token) {
-  //   return <Login setToken={setToken} />
-  // }
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <Route name="login">
-          <Login></Login>
-        </Route>
-        <Redirect exact from="/" to="login" />
-        {/* <Route name="dashboard">
-          <Dashboard></Dashboard>
-        </Route> */}
+        <Switch>
+          <Route exact path="/login" component={Login} />
 
+          <Route exact path="/dashboard" component={Dashboard} />
 
+          <Redirect exact from="/" to="login" />
+        </Switch>
       </ThemeProvider>
     </Router>
   );

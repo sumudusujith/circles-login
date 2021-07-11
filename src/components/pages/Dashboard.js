@@ -1,40 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Heading, Text } from "rebass";
-
 
 export const Dashboard = () => {
   const [email, setemail] = useState();
   const [name, setName] = useState();
   const [origin, setOrigin] = useState();
+
   const BASE_URL = "http://localhost:5000";
 
-  fetch(BASE_URL + "/user-service/user-details")
-    .then((response) => response.json())
-    .then(function setValues(response) {
-      console.log(response);
-      setemail(response.email);
-      setName(response.name);
-      setOrigin(response.origin);
-    });
+  useEffect(() => {
+    fetch(BASE_URL + "/user-service/user-details")
+      .then((response) => response.json())
+      .then(function setValues(response) {
+        console.log(response);
+        setemail(response.email);
+        setName(response.name);
+        setOrigin(response.origin);
+      });
+  }, []);
 
-  // export default function Dashboard() {
   return (
-    <div>
-      <Heading fontFamily="Candara" fontSize={[6]} color="primary">
+    <Box m={[2, 3, 4]}>
+      <Heading fontSize={[5, 6, 7]} color="primary" textAlign="center">
         Hello! I see you got through the login
       </Heading>
 
-      <Box>
-        <Heading fontSize={[3]} color="primary">
+      <Box
+        bg="#E8E8E8"
+        mt={[2, 3, 4]}
+        mb={[2, 3, 4]}
+        p={[2, 3, 4]}
+        sx={{ borderWidth: "1px", borderStyle: "solid", borderColor: "black" }}
+      >
+        <Heading
+          mt={[2, 3, 4]}
+          mb={[2, 3, 4]}
+          fontSize={[3, 4, 5]}
+          color="primary"
+        >
           Information
         </Heading>
-        <Text fontFamily="Candara" fontWeight="bold" >
+        <Text fontSize={[2, 3, 4]} fontWeight="bold" fontFamily="serif">
           Email address : {email} <br />
           Name : {name}
           <br />
           Origin Port : {origin}
         </Text>
       </Box>
-    </div>
+    </Box>
   );
 };
