@@ -1,12 +1,9 @@
 
 import React, { useState } from "react";
-import { Box, Heading, Button, Link } from "rebass";
+import { Box, Heading, Button, Flex, Link } from "rebass";
 import { Label as Text, Input } from "@rebass/forms";
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    useHistory,
+    BrowserRouter as Router, Route, Switch, useHistory,
 } from "react-router-dom";
 import { Dashboard } from "./Dashboard";
 
@@ -90,58 +87,84 @@ export const Login = () => {
     return (
         <Router>
             {/* <div> */}
-            <Heading fontFamily='Verdana' fontSize={[4]} color='primary'>
-                Ready to take  a Challenge?
-            </Heading>
-
-            <Box
-                sx={{
-                    px: 3,
-                    py: 5,
-                    backgroundColor: "grey",
-                    backgroundSize: 'cover',
-                    borderRadius: 8,
-                    color: 'black',
-                    bg: 'gray',
-                }}>
-                <Heading fontFamily='Verdana' fontSize={[3]} color="primary">
-                    Login to pick a Challenge!
+            <Flex
+                backgroundColor='#282c34'
+                height='100vh'
+                alignItems='center'
+                pt='2rem'
+                flexDirection='column'
+            >
+                <Heading
+                    fontFamily='Candara'
+                    color='#fff'
+                    fontSize='4rem'
+                    mb='2rem'
+                >
+                    Ready to take  a Challenge?
                 </Heading>
 
 
+                {/* <Heading fontFamily='Verdana' fontSize={[4]} color='primary'>
+                Ready to take  a Challenge?
+            </Heading> */}
+
+                <Box
+                    sx={{
+                        px: 3,
+                        py: 5,
+                        backgroundColor: "white",
+                        backgroundSize: 'cover',
+                        border: '5px solid', borderColor: "darkblue",
+                        borderRadius: 8,
+                        color: 'black',
+                        bg: 'white',
+                    }}>
+                    <Heading fontFamily='Verdana' fontSize={[3]} color="primary">
+                        Login to pick a Challenge!
+                    </Heading>
 
 
-                <Text fontFamily='Candara' htmlFor='email'>Email </Text>
-                <Input
-                    value={email}
-                    onChange={(e) => setemail(e.target.value)}
-                    id='email'
-                    name='email'
-                    type='email'
-                    placeholder='Email Address'
 
 
-                />
-                <Box width={[1, 1, 1 / 2]}>
-                    <Text fontFamily='Candara' htmlFor='password'>Password</Text>
+                    <Text fontFamily='Candara' htmlFor='email'>Email </Text>
                     <Input
-                        value={password}
-                        onChange={(e) => setpassword(e.target.value)}
-                        id='password'
-                        name='password'
-                        type='password'
-                        placeholder='password'
+                        value={email}
+                        onChange={(e) => setemail(e.target.value)}
+                        id='email'
+                        name='email'
+                        type='email'
+                        placeholder='Email Address'
 
 
                     />
-                </Box>
-                <Box>
+                    <Box >
+                        <Text fontFamily='Candara' htmlFor='password'>Password</Text>
+                        <Input
+                            value={password}
+                            onChange={(e) => setpassword(e.target.value)}
+                            id='password'
+                            name='password'
+                            type='password'
+                            placeholder='Password'
 
-                    <Button bg="#1a75ff" onClick={loginClicked}>
-                        Login
-                    </Button>
+
+                        />
+                    </Box>
+                    <Box
+                        sx={{
+                            px: 85,
+                            py: 25,
+
+                        }}>
+
+                        <Button width='100px'
+                            height='34px'
+                            bg='#282c34' onClick={loginClicked}>
+                            Login
+                        </Button>
+                    </Box>
                 </Box>
-            </Box>
+            </Flex>
 
 
             <Switch>
@@ -149,6 +172,8 @@ export const Login = () => {
             </Switch>
 
         </Router>
+
+
         //     <div>
         //     <Heading fontSize={[6]} color="primary">
         //       Ready to take a challenge?
