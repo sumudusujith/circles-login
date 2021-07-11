@@ -7,10 +7,10 @@ import { Login } from "./components/pages/Login";
 //import { Dashboard } from "./components/pages/Dashboard";
 
 function App() {
-  const [token, setToken] = useState();
-  if(!token) {
-    return <Login setToken={setToken} />
-  }
+  // const [token, setToken] = useState();
+  // if(!token) {
+  //   return <Login setToken={setToken} />
+  // }
   return (
     <Router>
       <ThemeProvider theme={theme}>

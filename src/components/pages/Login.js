@@ -1,34 +1,57 @@
 import React, { useState } from "react";
 import { Box, Heading, Button } from 'rebass'
-import { Label, Input } from '@rebass/forms'
-import PropTypes from 'prop-types';
+import { Label, Input,Switch } from '@rebass/forms'
+//import PropTypes from 'prop-types';
 
-async function loginUser(credentials) {
-    return fetch('http://localhost:8080/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-      .then(data => data.json())
-   }
 
-export const Login = ({setToken}) => {
+// async function loginUser(credentials) {
+//     return fetch('http://localhost:8080/login', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(credentials)
+//     })
+//       .then(data => data.json())
+//    }
+
+export const Login = () => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
+    const BASE_URL = "http://localhost:5000";
+
+    function loginClicked() {
+        console.log("Login Clicked");
+        console.log("Email : " + email);
+        console.log("Password : " + password);
+
+        fetch(BASE_URL + `/user-service/login/${email}/${password}`)
+        .then((response) => response.json())
+        // .then((data) => console.log(data));
+        .then(function setValues(response) {
+          if (response.status === "success") {
+            console.log(response);
+          } else {
+            console.log(response);
+          }
+        });
+    }
+
+    // export const Login = ({setToken}) => {
+    //     const [email, setemail] = useState("");
+    //     const [password, setpassword] = useState("");
 
     // function validateForm() {
     //   return email.length > 0 && password.length > 0;
     // }
-    const loginClicked = async e => {
-        e.preventDefault();
-        const token = await loginUser({
-          email,
-          password
-        });
-        setToken(token);
-      }
+    // const loginClicked = async e => {
+    //     e.preventDefault();
+    //     const token = await loginUser({
+    //       email,
+    //       password
+    //     });
+    //     setToken(token);
+    //   }
     // function loginClicked() {
     //     console.log("Login Clicked");
     //     console.log("Email : " + email);
@@ -92,11 +115,46 @@ export const Login = ({setToken}) => {
 
 
         </div>
+        //     <div>
+        //     <Heading fontSize={[6]} color="primary">
+        //       Ready to take a challenge?
+        //     </Heading>
 
+        //     <Box>
+        //       <Heading fontSize={[3]} color="primary">
+        //         Login to pick a challenge
+        //       </Heading>
+        //       <Label htmlFor="email">Email</Label>
+        //       <Input
+        //         value={email}
+        //         onChange={(e) => setemail(e.target.value)}
+        //         id="email"
+        //         name="email"
+        //         type="email"
+        //         placeholder="Email address"
+        //       />
+        //       <Box width={[1, 1, 1 / 2]}>
+        //         <Label htmlFor="password">Password</Label>
+        //         <Input
+        //           value={password}
+        //           onChange={(e) => setpassword(e.target.value)}
+        //           id="password"
+        //           name="password"
+        //           type="password"
+        //           placeholder="Password"
+        //         />
+        //       </Box>
+        //       <Box>
+        //         <Button bg="blue" onClick={loginClicked}>
+        //           Login
+        //         </Button>
+        //       </Box>
+        //     </Box>
+        //   </div>
     );
-    
-    
-}
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
-  };
+
+
+
+    // Login.propTypes = {
+    //     setToken: PropTypes.func.isRequired
+};
