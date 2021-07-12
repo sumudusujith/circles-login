@@ -22,7 +22,7 @@ app.use("/user-service/login/:email/:password", (req, res) => {
   console.log(password);
 
   if (
-    email === "admin@circles.asia" || password === "circles111"
+       email === "admin@circles.asia" || password === "circles111"
   ) {
     console.log("Hooray, It's working.");
     res.send({
@@ -30,12 +30,12 @@ app.use("/user-service/login/:email/:password", (req, res) => {
       message: `Hello from server! ${email}`,
     });
   } if (!email || !password) {
-    return res.status(400).send({
+    return res.status(400).json({
       error: true,
       message: "Username or Password required."
     });
   }
-
+  
   else {
     res.send({
       status: "fail",
