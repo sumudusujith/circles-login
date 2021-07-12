@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 
 app.use("/user-service/user-details", (req, res) => {
-  res.json({
+  res.send({
     email: "admin@circles.asia",
     name: "Admin 1",
     origin: "Colombo",
@@ -15,8 +15,8 @@ app.use("/user-service/user-details", (req, res) => {
 });
 
 app.use("/user-service/login/:email/:password", (req, res) => {
-  let email = req.params.email;
-  let password = req.params.password;
+  const email = req.params.email;
+  const password = req.params.password;
 
   console.log(email);
   console.log(password);
@@ -25,12 +25,12 @@ app.use("/user-service/login/:email/:password", (req, res) => {
        email === "admin@circles.asia" || password === "circles111"
   ) {
     console.log("Hooray, It's working.");
-    res.json({
+    res.send({
       token: 'A_guid',
       message: `Hello from server! ${email}`,
     });
   } else {
-    res.json({
+    res.send({
       status: "fail",
       message: "Oh no, Login is not working.",
     });
