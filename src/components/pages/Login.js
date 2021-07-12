@@ -33,6 +33,8 @@ export const Login = () => {
         console.log("Login Clicked");
         console.log("Email : " + email);
         console.log("Password : " + password);
+
+      
         //fetch('http://localhost:5000/user-service/login/',{email:email.value,password:password.value})
 
         fetch(user + `/user-service/login/${email}/${password}`)
@@ -43,7 +45,7 @@ export const Login = () => {
                     history.push("/dashboard");
                 } else {
                     console.log(response);
-                    setResponseMessage("Please recheck your login credentials.");
+                    setResponseMessage("Invalid login credentials.");
                 }
             });
     }
@@ -82,15 +84,10 @@ export const Login = () => {
     //     });
     //     setToken(token);
     //   }
-    // function loginClicked() {
-    //     console.log("Login Clicked");
-    //     console.log("Email : " + email);
-    //     console.log("Password : " + password);
-    // }
-
+  
     return (
         <Router>
-            {/* <div> */}
+        
             <Flex
                 backgroundColor='#282c34'
                 height='100vh'
@@ -108,10 +105,7 @@ export const Login = () => {
                 </Heading>
 
 
-                {/* <Heading fontFamily='Verdana' fontSize={[4]} color='primary'>
-                Ready to take  a Challenge?
-            </Heading> */}
-
+            
                 <Box
                     sx={{
                         px: 3,
@@ -178,42 +172,6 @@ export const Login = () => {
         </Router>
 
 
-        //     <div>
-        //     <Heading fontSize={[6]} color="primary">
-        //       Ready to take a challenge?
-        //     </Heading>
-
-        //     <Box>
-        //       <Heading fontSize={[3]} color="primary">
-        //         Login to pick a challenge
-        //       </Heading>
-        //       <Label htmlFor="email">Email</Label>
-        //       <Input
-        //         value={email}
-        //         onChange={(e) => setemail(e.target.value)}
-        //         id="email"
-        //         name="email"
-        //         type="email"
-        //         placeholder="Email address"
-        //       />
-        //       <Box width={[1, 1, 1 / 2]}>
-        //         <Label htmlFor="password">Password</Label>
-        //         <Input
-        //           value={password}
-        //           onChange={(e) => setpassword(e.target.value)}
-        //           id="password"
-        //           name="password"
-        //           type="password"
-        //           placeholder="Password"
-        //         />
-        //       </Box>
-        //       <Box>
-        //         <Button bg="blue" onClick={loginClicked}>
-        //           Login
-        //         </Button>
-        //       </Box>
-        //     </Box>
-        //   </div>
     );
 
 
