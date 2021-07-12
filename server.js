@@ -9,6 +9,7 @@ app.use(cors());
 app.use("/user-service/user-details", (req, res) => {
   res.send({
     email: "admin@circles.asia",
+    password: "circles111",
     name: "Admin 1",
     origin: "Colombo",
   });
@@ -22,18 +23,20 @@ app.use("/user-service/login/:email/:password", (req, res) => {
   console.log(password);
 
   if (
-       email === "admin@circles.asia" || password === "circles111"
+    email.trim() === "admin@circles.asia" &&
+    password.trim() === "circles111"
+       //email === "admin@circles.asia" || password === "circles111"
   ) {
     console.log("Hooray, It's working.");
     res.send({
       token: 'A_guid',
       message: `Hello from server! ${email}`,
     });
-  } if (!email || !password) {
-    return res.status(400).json({
-      error: true,
-      message: "Username or Password required."
-    });
+  // } if (!email || !password) {
+  //   return res.status(400).json({
+  //     error: true,
+  //     message: "Username or Password required."
+  //   });
   }
   
   else {
