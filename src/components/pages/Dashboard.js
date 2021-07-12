@@ -6,10 +6,10 @@ export const Dashboard = () => {
   const [name, setName] = useState();
   const [origin, setOrigin] = useState();
 
-  const BASE_URL = "http://localhost:5000";
+  const user = "http://localhost:5000";
 
   useEffect(() => {
-    fetch(BASE_URL + "/user-service/user-details")
+    fetch(user + "/user-service/user-details")
       .then((response) => response.json())
       .then(function setValues(response) {
         console.log(response);

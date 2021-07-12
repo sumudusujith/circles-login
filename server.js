@@ -5,7 +5,7 @@ const app = express();
 // To fix cors origin error
 app.use(cors());
 
-app.get("/user-service/user-details", (req, res) => {
+app.use("/user-service/user-details", (req, res) => {
   res.json({
     email: "admin@circles.asia",
     name: "Admin 1",
@@ -13,7 +13,7 @@ app.get("/user-service/user-details", (req, res) => {
   });
 });
 
-app.get("/user-service/login/:email/:password", (req, res) => {
+app.use("/user-service/login/:email/:password", (req, res) => {
   let email = req.params.email;
   let password = req.params.password;
 
@@ -21,9 +21,7 @@ app.get("/user-service/login/:email/:password", (req, res) => {
   console.log(password);
 
   if (
-    email.trim() === "admin@circles.asia" &&
-    password.trim() === "circles111"
-    //email !== "admin@circles.asia" || password !== "circles111"
+       email === "admin@circles.asia" || password === "circles111"
   ) {
     console.log("Hooray, It's working.");
     res.json({
@@ -39,7 +37,7 @@ app.get("/user-service/login/:email/:password", (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("server is listening on port 5000");
+  console.log("API is running on http://localhost:5000");
 });
 
 

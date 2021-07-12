@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Box, Heading, Button, Flex, Link } from "rebass";
+import { Box, Heading, Button, Flex } from "rebass";
 import { Label as Text, Input } from "@rebass/forms";
 import {
     BrowserRouter as Router, Route, Switch, useHistory,
@@ -21,24 +21,21 @@ export const Login = () => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
 
-    const [responseMessage, setResponseMessage] = useState("");
+    const  setResponseMessage = useState("");
 
     const history = useHistory();
 
-    const BASE_URL = "http://localhost:5000";
+    const user = "http://localhost:5000";
 
-    // Function to execute when login button is clicked
-    // function loginClicked() {
-    //   console.log("Login Clicked");
-    //   console.log("Email : " + userName);
-    //   console.log("Password : " + passWord);
+   
 
     function loginClicked() {
         console.log("Login Clicked");
         console.log("Email : " + email);
         console.log("Password : " + password);
+        //fetch('http://localhost:5000/user-service/login/',{email:email.value,password:password.value})
 
-        fetch(BASE_URL + `/user-service/login/${email}/${password}`)
+        fetch(user + `/user-service/login/${email}/${password}`)
             .then((response) => response.json())
             .then(function setValues(response) {
                 if (response.status === "success") {
@@ -50,26 +47,33 @@ export const Login = () => {
                 }
             });
     }
-
-    //     fetch(BASE_URL + `/user-service/login/${email}/${password}`)
-    //     .then((response) => response.json())
-    //     // .then((data) => console.log(data));
-    //     .then(function setValues(response) {
-    //       if (response.status === "success") {
-    //         console.log(response);
+    
+    // class Form extends React.Component {
+    //     handleChange = e => {
+    //       this.form.validateFields(e.target);
+    //     }
+      
+    //     contactSubmit = e => {
+    //       e.preventDefault();
+      
+    //       this.form.validateFields();
+      
+    //       if (!this.form.isValid()) {
+    //         console.log('form is invalid: do not submit');
     //       } else {
-    //         console.log(response);
+    //         console.log('form is valid: submit');
     //       }
-    //     });
-    // }
+    //     }}
+
+
 
     // export const Login = ({setToken}) => {
     //     const [email, setemail] = useState("");
     //     const [password, setpassword] = useState("");
 
-    // function validateForm() {
-    //   return email.length > 0 && password.length > 0;
-    // }
+    //  function validateForm() {
+    //    return email.length > 0 && password.length > 0;
+    //  }
     // const loginClicked = async e => {
     //     e.preventDefault();
     //     const token = await loginUser({
