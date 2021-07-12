@@ -21,20 +21,20 @@ export const Login = () => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
 
-    const  setResponseMessage = useState("");
+    const [responseMessage, setResponseMessage] = useState("");
 
     const history = useHistory();
 
     const user = "http://localhost:5000";
 
-   
+
 
     function loginClicked() {
         console.log("Login Clicked");
         console.log("Email : " + email);
         console.log("Password : " + password);
 
-      
+
         //fetch('http://localhost:5000/user-service/login/',{email:email.value,password:password.value})
 
         fetch(user + `/user-service/login/${email}/${password}`)
@@ -49,19 +49,19 @@ export const Login = () => {
                 }
             });
 
-            
+
     }
-    
+
     // class Form extends React.Component {
     //     handleChange = e => {
     //       this.form.validateFields(e.target);
     //     }
-      
+
     //     contactSubmit = e => {
     //       e.preventDefault();
-      
+
     //       this.form.validateFields();
-      
+
     //       if (!this.form.isValid()) {
     //         console.log('form is invalid: do not submit');
     //       } else {
@@ -86,10 +86,10 @@ export const Login = () => {
     //     });
     //     setToken(token);
     //   }
-  
+
     return (
         <Router>
-        
+
             <Flex
                 backgroundColor='#282c34'
                 height='100vh'
@@ -107,10 +107,10 @@ export const Login = () => {
                 </Heading>
 
 
-            
+
                 <Box
                     sx={{
-                        px: 3,
+                        px: 5,
                         py: 5,
                         backgroundColor: "white",
                         backgroundSize: 'cover',
@@ -162,6 +162,12 @@ export const Login = () => {
                             bg='#282c34' onClick={loginClicked}>
                             Login
                         </Button>
+
+                    </Box>
+                    {/* login validation */}
+                    <Box px={5} py={2} fontFamily='Candara' color="red">
+
+                        {responseMessage}
                     </Box>
                 </Box>
             </Flex>
@@ -180,4 +186,4 @@ export const Login = () => {
 
     // Login.propTypes = {
     //     setToken: PropTypes.func.isRequired
-                    };
+};

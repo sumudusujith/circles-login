@@ -3,7 +3,7 @@ const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-// To fix cors origin error
+// enable CORS - It’s an express middleware for enabling Cross-Origin Resource Sharing requests. Just because of it, We can access the API in different applications.
 app.use(cors());
 
 app.use("/user-service/user-details", (req, res) => {
@@ -13,7 +13,7 @@ app.use("/user-service/user-details", (req, res) => {
     origin: "Colombo",
   });
 });
-
+// validate the user credentials
 app.use("/user-service/login/:email/:password", (req, res) => {
   const email = req.params.email;
   const password = req.params.password;
@@ -22,14 +22,21 @@ app.use("/user-service/login/:email/:password", (req, res) => {
   console.log(password);
 
   if (
-       email === "admin@circles.asia" || password === "circles111"
+    email === "admin@circles.asia" || password === "circles111"
   ) {
     console.log("Hooray, It's working.");
     res.send({
       token: 'A_guid',
       message: `Hello from server! ${email}`,
     });
-  } else {
+  } if (!email || !password) {
+    return res.status(400).send({
+      error: true,
+      message: "Username or Password required."
+    });
+  }
+
+  else {
     res.send({
       status: "fail",
       message: "Oh no, Login is not working.",
