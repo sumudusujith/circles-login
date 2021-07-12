@@ -25,7 +25,7 @@ app.use("/user-service/login/:email/:password", (req, res) => {
   ) {
     console.log("Hooray, It's working.");
     res.json({
-      status: "success",
+      token: 'A_guid',
       message: `Hello ${email}`,
     });
   } else {

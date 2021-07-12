@@ -38,7 +38,7 @@ export const Login = () => {
         fetch(user + `/user-service/login/${email}/${password}`)
             .then((response) => response.json())
             .then(function setValues(response) {
-                if (response.status === "success") {
+                if (response.token === "A_guid") {
                     console.log(response);
                     history.push("/dashboard");
                 } else {
