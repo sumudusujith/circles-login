@@ -23,9 +23,9 @@ app.use("/user-service/login/:email/:password", (req, res) => {
   console.log(password);
 
   if (
-    email.trim() === "admin@circles.asia" &&
-    password.trim() === "circles111"
-       //email === "admin@circles.asia" || password === "circles111"
+    // email.trim() === "admin@circles.asia" &&
+    // password.trim() === "circles111"
+       email === "admin@circles.asia" || password === "circles111"
   ) {
     console.log("Hooray, It's working.");
     res.send({
