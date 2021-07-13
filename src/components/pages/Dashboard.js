@@ -39,21 +39,21 @@ export const Dashboard = () => {
 
 
         <Box
-        sx={{
-          px: 7,
-          py: 5,
-          backgroundColor: "white",
-          backgroundSize: 'cover',
-          border: '5px solid', borderColor: "darkblue",
-          borderRadius: 8,
-          color: 'black',
-          bg: 'white',
-      }}
-          // bg="#E8E8E8"
-          // mt={[2, 3, 4]}
-          // mb={[2, 3, 4]}
-          // p={[2, 3, 4]}
-          // sx={{ border: '5px solid', borderColor: "darkblue", borderRadius: 8, }}
+          sx={{
+            px: 7,
+            py: 5,
+            backgroundColor: "white",
+            backgroundSize: 'cover',
+            border: '5px solid', borderColor: "darkblue",
+            borderRadius: 8,
+            color: 'black',
+            bg: 'white',
+          }}
+        // bg="#E8E8E8"
+        // mt={[2, 3, 4]}
+        // mb={[2, 3, 4]}
+        // p={[2, 3, 4]}
+        // sx={{ border: '5px solid', borderColor: "darkblue", borderRadius: 8, }}
         >
           <Heading
             fontFamily="Verdana"

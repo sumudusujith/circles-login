@@ -23,21 +23,21 @@ app.use("/user-service/login/:email/:password", (req, res) => {
   console.log(password);
 
   if (
-   
-       email === "admin@circles.asia" || password === "circles111"
+
+    email === "admin@circles.asia" || password === "circles111"
   ) {
     console.log("Hooray, It's working.");
     res.send({
       token: 'A_guid',
       message: `Hello from server! ${email}`,
     });
-  // } if (!email || !password) {
-  //   return res.status(400).json({
-  //     error: true,
-  //     message: "Username or Password required."
-  //   });
+    // } if (!email || !password) {
+    //   return res.status(400).json({
+    //     error: true,
+    //     message: "Username or Password required."
+    //   });
   }
-  
+
   else {
     res.send({
       status: "fail",
@@ -78,9 +78,8 @@ app.listen(PORT, () => {
 //   }
 
 //   if (email !== userData.email || password !== userData.password)
- // email.trim() === "admin@circles.asia" &&
-    // password.trim() === "circles111"
-     {
+// email.trim() === "admin@circles.asia" &&
+// password.trim() === "circles111"{
 //     return res.json({
 //       status: "success",
 //       message: "Oh no, Login is not working.",
