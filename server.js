@@ -31,11 +31,11 @@ app.use("/user-service/login/:email/:password", (req, res) => {
       token: 'A_guid',
       message: `Hello from server! ${email}`,
     });
-    // } if (!email || !password) {
-    //   return res.status(400).json({
-    //     error: true,
-    //     message: "Username or Password required."
-    //   });
+    } if (!email || !password) {
+      return res.status(400).json({
+        error: true,
+        message: "Username or Password required."
+      });
   }
 
   else {
