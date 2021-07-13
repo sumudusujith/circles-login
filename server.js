@@ -8,8 +8,8 @@ app.use(cors());
 
 app.use("/user-service/user-details", (req, res) => {
   res.send({
-    email: "admin@circles.asia",
-    password: "circles111",
+    emailaddress: "admin@circles.asia",
+    // password: "circles111",
     name: "Admin 1",
     origin: "Colombo",
   });

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Heading, Text, Flex } from "rebass";
 
 export const Dashboard = () => {
-  const [email, setemail] = useState();
+  const [emailaddress, setEmailAddress1] = useState();
   const [name, setName] = useState();
   const [origin, setOrigin] = useState();
 
@@ -13,7 +13,7 @@ export const Dashboard = () => {
       .then((response) => response.json())
       .then(function setValues(response) {
         console.log(response);
-        setemail(response.email);
+        setEmailAddress1(response.emailaddress);
         setName(response.name);
         setOrigin(response.origin);
       });
@@ -39,11 +39,21 @@ export const Dashboard = () => {
 
 
         <Box
-          bg="#E8E8E8"
-          mt={[2, 3, 4]}
-          mb={[2, 3, 4]}
-          p={[2, 3, 4]}
-          sx={{ border: '5px solid', borderColor: "darkblue", borderRadius: 8, }}
+        sx={{
+          px: 7,
+          py: 5,
+          backgroundColor: "white",
+          backgroundSize: 'cover',
+          border: '5px solid', borderColor: "darkblue",
+          borderRadius: 8,
+          color: 'black',
+          bg: 'white',
+      }}
+          // bg="#E8E8E8"
+          // mt={[2, 3, 4]}
+          // mb={[2, 3, 4]}
+          // p={[2, 3, 4]}
+          // sx={{ border: '5px solid', borderColor: "darkblue", borderRadius: 8, }}
         >
           <Heading
             fontFamily="Verdana"
@@ -55,8 +65,8 @@ export const Dashboard = () => {
           >
             Information
           </Heading>
-          <Text fontSize={[2]} fontWeight="bold" fontFamily="Verdana">
-            Email address : {email} <br />
+          <Text fontSize={[2]} fontWeight="bold" fontFamily="Arial">
+            Email address : {emailaddress} <br />
             Name : {name}
             <br />
             Origin Port : {origin}

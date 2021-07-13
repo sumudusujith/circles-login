@@ -31,7 +31,7 @@ export const Login = () => {
 
     function loginClicked() {
         console.log("Login Clicked");
-        console.log("Email : " + email);
+        console.log("EmailAddress : " + email);
         console.log("Password : " + password);
 
 
@@ -126,14 +126,14 @@ export const Login = () => {
 
 
 
-                    <Text fontFamily='Candara' htmlFor='email'>Email </Text>
+                    <Text fontFamily='Candara' htmlFor='emailaddresss'>Email </Text>
                     <Input
                         value={email}
                         onChange={(e) => setemail(e.target.value)}
-                        id='email'
-                        name='email'
-                        type='email'
-                        placeholder='Email Address'
+                        id='emailAddress'
+                        name='emailAddress'
+                        type='emailAddress'
+                        placeholder='EmailAddress'
 
 
                     />
