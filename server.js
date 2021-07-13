@@ -23,8 +23,7 @@ app.use("/user-service/login/:email/:password", (req, res) => {
   console.log(password);
 
   if (
-    // email.trim() === "admin@circles.asia" &&
-    // password.trim() === "circles111"
+   
        email === "admin@circles.asia" || password === "circles111"
   ) {
     console.log("Hooray, It's working.");
@@ -78,7 +77,10 @@ app.listen(PORT, () => {
 //     });
 //   }
 
-//   if (email !== userData.email || password !== userData.password) {
+//   if (email !== userData.email || password !== userData.password)
+ // email.trim() === "admin@circles.asia" &&
+    // password.trim() === "circles111"
+     {
 //     return res.json({
 //       status: "success",
 //       message: "Oh no, Login is not working.",
