@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 // enable CORS - It’s an express middleware for enabling Cross-Origin Resource Sharing requests. Just because of it, We can access the API in different applications.
 app.use(cors());
 
-app.use("/user-service/user-details", (req, res) => {
+app.get("/user-service/user-details", (req, res) => {
   res.send({
     emailaddress: "admin@circles.asia",
     // password: "circles111",
@@ -15,7 +15,7 @@ app.use("/user-service/user-details", (req, res) => {
   });
 });
 // validate the user credentials
-app.use("/user-service/login/:email/:password", (req, res) => {
+app.get("/user-service/login/:email/:password", (req, res) => {
   const email = req.params.email;
   const password = req.params.password;
 
@@ -27,19 +27,20 @@ app.use("/user-service/login/:email/:password", (req, res) => {
     email === "admin@circles.asia" || password === "circles111"
   ) {
     console.log("Hooray, It's working.");
-    res.send({
+    res.json({
       token: 'A_guid',
       message: `Hello from server! ${email}`,
     });
-    } if (!email || !password) {
-      return res.status(400).json({
+    } if (password !== "circles111") {
+      console.log("Oh no, Login is not working.");
+      res.json({
         error: true,
-        message: "Username or Password required."
+        message: "Password required."
       });
   }
 
-  else {
-    res.send({
+  else  {
+    res.json({
       status: "fail",
       message: "Oh no, Login is not working.",
     });
@@ -88,3 +89,19 @@ app.listen(PORT, () => {
 // });
 
 // app.listen(5000, () => console.log('API is running on http://localhost:5000'));
+
+
+//tokentesting
+// const express = require('express');
+// const cors = require('cors')
+// const app = express();
+
+// app.use(cors());
+
+// app.use('/login', (req, res) => {
+//   res.send({
+//     token: 'A_guid'
+//   });
+// });
+
+// app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
