@@ -6,15 +6,20 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { Header1 } from "../../constants/Header/Header1";
+import { Label } from "../../constants/Header/Text";
+import { RebassInput } from "../../constants/Header/Input";
 
 import { routesClass } from "../../routesClass";
 
+
 import { incrementBy, login } from "../../redux/actions/";
+import { getData } from "../../fetch";
 
 
 
 
-//    }
+
+
 const Login = (props) => {
     console.log("Props", props);
     const [email, setemail] = useState("");//camelcase
@@ -38,7 +43,6 @@ const Login = (props) => {
 
 
         //fetch('http://localhost:5000/user-service/login/',{email:email.value,password:password.value})
-
         fetch(routesClass.user_url + `/user-service/login/${email}/${password}`) //servce file
             .then((response) => response.json())
             .then(function setValues(response) {
@@ -102,13 +106,17 @@ const Login = (props) => {
                     textAlign="center"
                     color='#fff'
                     fontFamily="Verdana"
-                //mb='2rem'
+
                 />
 
 
 
 
-                <Text fontFamily='Candara' htmlFor='emailaddresss'>Email </Text>
+                <Label
+
+                    name={"Emailaddresss"}
+                    htmlFor="emailaddresss"
+                    fontFamily='Candara' />
                 <Input   //add into comp
                     value={email}
                     onChange={(e) => setemail(e.target.value)}
@@ -120,7 +128,11 @@ const Login = (props) => {
 
                 />
                 <Box >
-                    <Text fontFamily='Candara' htmlFor='password'>Password</Text>
+                    <Label
+                        name={"Password"}
+                        htmlFor="password"
+                        fontFamily='Candara'
+                    />
                     <Input
                         value={password}
                         onChange={(e) => setpassword(e.target.value)}
