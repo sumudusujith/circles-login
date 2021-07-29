@@ -9,4 +9,10 @@ test("Check if initial values and components are loaded", () => {
     name: "Ready to take  a Challenge?",
   });
   expect(mainHeader).toBeInTheDocument();
+
+  const secondHeader = screen.getByRole("heading", {
+    name: "Login to pick a challenge",
+  });
+  expect(secondHeader).toBeInTheDocument();
+  
 });

@@ -24,7 +24,7 @@ app.get("/user-service/login/:email/:password", (req, res) => {
 
   if (
 
-    email === "admin@circles.asia" || password === "circles111"
+    email === "admin@circles.asia" &&  password === "circles111"
   ) {
     console.log("Hooray, It's working.");
     res.json({
@@ -34,7 +34,7 @@ app.get("/user-service/login/:email/:password", (req, res) => {
     } if (password !== "circles111") {
       console.log("Oh no, Login is not working.");
       res.json({
-        error: true,
+        status: "fail",
         message: "Password required."
       });
   }

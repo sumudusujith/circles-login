@@ -1,5 +1,6 @@
 import React from "react";
+import { Button } from "rebass";
 
-export const RebassButton = () => {
-    return <div></div>;
+export const RebassButton = ({ value }) => {
+  return <Button>{value}</Button>;
 };

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Box, Heading, Text, Flex } from "rebass";
+import { routesClass } from "../../routesClass";
 
 export const Dashboard = () => {
   const [emailaddress, setEmailAddress1] = useState();
   const [name, setName] = useState();
   const [origin, setOrigin] = useState();
 
-  const user = "http://localhost:5000";
+  // const user = "http://localhost:5000";
 
   useEffect(() => {
-    fetch(user + "/user-service/user-details")
+    fetch(routesClass.user_url + "/user-service/user-details")
       .then((response) => response.json())
       .then(function setValues(response) {
         console.log(response);
