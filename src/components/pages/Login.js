@@ -1,19 +1,19 @@
 
 import React, { useState } from "react";
 import { Box, Button, Flex } from "rebass";
-import { Label as Text, Input } from "@rebass/forms";
+import { Input } from "@rebass/forms";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { Header1 } from "../../constants/Header/Header1";
 import { Label } from "../../constants/Header/Text";
-import { RebassInput } from "../../constants/Header/Input";
+//import { RebassInput } from "../../constants/Header/Input";
 
 import { routesClass } from "../../routesClass";
 
 
 import { incrementBy, login } from "../../redux/actions/";
-import { getData } from "../../fetch";
+//import { getData } from "../../fetch";
 
 
 
@@ -29,7 +29,7 @@ const Login = (props) => {
 
     const history = useHistory();
 
-    //const user = "http://localhost:5000";//add it into constfle
+
 
 
 
@@ -42,7 +42,7 @@ const Login = (props) => {
         console.log("Password : " + password);
 
 
-        //fetch('http://localhost:5000/user-service/login/',{email:email.value,password:password.value})
+
         fetch(routesClass.user_url + `/user-service/login/${email}/${password}`) //servce file
             .then((response) => response.json())
             .then(function setValues(response) {
@@ -60,7 +60,7 @@ const Login = (props) => {
 
 
     return (
-        //<Router>
+
 
         <Flex
             backgroundColor='#282c34'
@@ -69,14 +69,7 @@ const Login = (props) => {
             pt='2rem'
             flexDirection='column'
         >
-            {/* <Heading //wrapper compnnt
-                    // fontFamily='Candara'
-                    // color='#fff'
-                    // fontSize='4rem'
-                    // mb='2rem'
-                >
-                    Ready to take  a Challenge?
-                </Heading> */}
+
             <Header1
                 name={"Ready to take a challenge?"}
                 fontSize="4rem"
@@ -117,7 +110,7 @@ const Login = (props) => {
                     name={"Emailaddresss"}
                     htmlFor="emailaddresss"
                     fontFamily='Candara' />
-                <Input   //add into comp
+                <Input
                     value={email}
                     onChange={(e) => setemail(e.target.value)}
                     id='emailAddress'
@@ -182,7 +175,7 @@ const Login = (props) => {
 
 
 };
-//useselcetor
+
 function mapStateToProps(state) {
     console.log("state", state);
     return {
@@ -207,12 +200,6 @@ function mapDispatchToProps(dispatch) {
 
     }
 
-    //function mapSaveState(state) { 
-    //     console.log("state", state);
-    //     return {
-    //         userDetails: state.login.email
-    //     }
 
-    // }  
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

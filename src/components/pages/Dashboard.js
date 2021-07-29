@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, Heading, Text, Flex } from "rebass";
+import { Box,  Text, Flex } from "rebass";
+import { Header1 } from "../../constants/Header/Header1";
 import { routesClass } from "../../routesClass";
 
 export const Dashboard = () => {
@@ -7,7 +8,7 @@ export const Dashboard = () => {
   const [name, setName] = useState();
   const [origin, setOrigin] = useState();
 
-  // const user = "http://localhost:5000";
+
 
   useEffect(() => {
     fetch(routesClass.user_url + "/user-service/user-details")
@@ -28,14 +29,15 @@ export const Dashboard = () => {
       pt='2rem'
       flexDirection='column'
     >
-      <Heading
+      <Header1
         fontFamily='Candara'
         color='#fff'
         fontSize='3rem'
         mb='2rem'
-      >
-        Hello! I see you got through the login
-      </Heading>
+        name={" Hello! I see you got through the login"}
+
+
+      />
       <Box m={[2, 3, 4]}>
 
 
@@ -50,22 +52,18 @@ export const Dashboard = () => {
             color: 'black',
             bg: 'white',
           }}
-        // bg="#E8E8E8"
-        // mt={[2, 3, 4]}
-        // mb={[2, 3, 4]}
-        // p={[2, 3, 4]}
-        // sx={{ border: '5px solid', borderColor: "darkblue", borderRadius: 8, }}
+
         >
-          <Heading
+          <Header1
             fontFamily="Verdana"
             alignItems='center'
-            mt={[2, 3, 4]}
-            mb={[2, 3, 4]}
-            fontSize={[2]}
+            mt={[2, 2, 2]}
+            mb={[2, 3, 3]}
+            fontSize={[3]}
             color="primary"
-          >
-            Information
-          </Heading>
+
+            name={"Information"}
+          />
           <Text fontSize={[2]} fontWeight="bold" fontFamily="Arial">
             Email address : {emailaddress} <br />
             Name : {name}

@@ -5,20 +5,24 @@ export const Header1 = ({
     fontFamily,
     fontSize,
     color,
+    marginTop,
     marginBottom,
     marginLeft,
     marginRight,
-  }) =>  {
-    return(
+    alignItems
+}) => {
+    return (
         <Heading //wrapper compnnt
-                    fontFamily={fontFamily}
-                    color={color}
-                    fontSize={fontSize}
-                    mb={marginBottom}
-                >
-                    {name}
-                    {/* //Ready to take  a Challenge? */}
-                </Heading>
+            fontFamily={fontFamily}
+            color={color}
+            fontSize={fontSize}
+            mb={marginBottom}
+            mt={marginTop}
+            alignItems={alignItems}
+        >
+            {name}
+
+        </Heading>
     )
 }
 export default Heading;
