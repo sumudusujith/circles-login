@@ -10,7 +10,7 @@ export const Dashboard = () => {
 
 
 
-  useEffect(() => {
+  useEffect(() => {    //perform side-effects in function components
     fetch(routesClass.user_url + "/user-service/user-details")
       .then((response) => response.json())
       .then(function setValues(response) {

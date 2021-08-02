@@ -28,7 +28,7 @@ app.get("/user-service/login/:email/:password", (req, res) => {
   ) {
     console.log("Hooray, It's working.");
     res.json({
-      token: 'A_guid',
+      status: "success",
       message: `Hello from server! ${email}`,
     });
     } if (password !== "circles111") {
