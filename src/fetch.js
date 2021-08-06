@@ -1,13 +1,50 @@
+// import { routesClass } from "./routesClass";
+
+// const axios = require("axios");
+
+// export const getData = (email, password) => {
+//   return axios
+//     .get(routesClass.BASE_URL + `/user-service/login/${email}/${password}`)
+//     .then(function (response) {
+//       console.log(response);
+//       return response.data;
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
+
+// export const getDataUserData = () => {
+//   return axios
+//     .get(routesClass.BASE_URL + "/user-service/user-details")
+//     .then(function (response) {
+//       console.log("EMAIL", response.email);
+
+//       let userObj = {
+//         email: response.email,
+//         name: response.name,
+//         origin: response.origin,
+//       };
+
+//       return userObj;
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
+
+
+
 import React from "react";
 import { routesClass } from "./routesClass";
 
 //const [responseMessage, setResponseMessage] = useState("");
 
   
- const getData = (email,password) => {
+ export const getData = (email,password) => {
      
     //const history = useHistory();
-debugger
+//debugger
 
   return fetch(routesClass.user_url + `/user-service/login/${email}/${password}`) //servce file
       .then((response) => response.json())
@@ -15,7 +52,7 @@ debugger
           
         //  if (response.token === "A_guid") {
               console.log(response);
-              return response.status;
+              return response;
               //props.up
         //       history.push("/dashboard");
         //  // } else {
@@ -26,4 +63,4 @@ debugger
 
   
 };
-export default getData;
+//export default getData;

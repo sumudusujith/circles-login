@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, LOGIN } from "../actions/actionTypes";
+import { INCREMENT, DECREMENT, LOGIN, SAGA_LOGIN } from "../actions/actionTypes";
 
 const initialState = {
     total: 0,
@@ -8,8 +8,13 @@ const initialState = {
 
 const initialUser = {
     email: null,
-    password: null
+    password: null //comma q
 }
+const sagaUser = {
+    email: null,
+    password: null
+};
+
 export default function exampleReducer(state = initialState, action) {
 
     switch (action.type) {
@@ -29,6 +34,7 @@ export default function exampleReducer(state = initialState, action) {
         default: return state;
     }
 }
+
 export function loginReducer(state = initialUser, action) {
 
     switch (action.type) {
@@ -43,8 +49,27 @@ export function loginReducer(state = initialUser, action) {
         default:
             return state;
     }
-
-
-
 }
 
+export function sagaLoginReducer(state =sagaUser, action) {
+
+    switch (action.type) {
+        case SAGA_LOGIN:
+            return {
+                ...state,
+                email: action.payload.email,
+                password: action.payload.password,
+
+            }; //semi colon q
+        case "LOGIN_RESPONSE": //double quotes
+            return {
+                ...state,
+                //email: action.payload.email,
+                //password: action.payload.password,
+                loginResponse: action.payload,
+
+            };
+        default:
+            return state;
+    }
+}
