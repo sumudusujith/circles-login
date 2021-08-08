@@ -111,7 +111,7 @@ function mapDispatchToProps(dispatch) {
         errors.password = "Must be 4 characters or greater";
       }
 
-      if (values.password,values.firstName,values.lastName) {
+      if (values.password && values.firstName && values.lastName) {
         console.log("success");
       } 
     // if (values)
