@@ -8,6 +8,7 @@ import {
 import  Login  from "./components/pages/Login";
 import { Dashboard } from "./components/pages/Dashboard";
 import { routesClass } from "./routesClass";
+import reduxLogin from "./components/pages/reduxLogin";
 
 
 export const Routes = () => {
@@ -15,7 +16,7 @@ export const Routes = () => {
     <div>
       <Router>
         <Switch>
-          <Route exact path={routesClass.routeToLogin} component={Login} />
+          <Route exact path={routesClass.routeToLogin} component={reduxLogin} />
 
           <Route exact path="/dashboard" component={Dashboard} />
 

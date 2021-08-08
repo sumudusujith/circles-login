@@ -20,6 +20,11 @@ ReactDOM.render(
       onIncrement={() => action('INCREMENT')}
       onDecrement={() => action('DECREMENT')}
       onIncrementAsync={() => action('INCREMENT_ASYNC')} />, */}
+      {/* <div style={{ padding: 15 }}>
+      <h2>Simple Form</h2>
+      //<loginForm onSubmit={showResults} />
+      <Values form="simple" />
+    </div> */}
       <App />
     </Provider>
   </React.StrictMode>,

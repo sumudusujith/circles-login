@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, LOGIN, SAGA_LOGIN } from "./actionTypes"
+import { INCREMENT, DECREMENT, LOGIN, SAGA_LOGIN ,FORM_LOGIN} from "./actionTypes"
 //actions
 export function incrementBy(payload) {
     return { type: INCREMENT, payload }
@@ -29,4 +29,16 @@ export function sagalogin(email, password, callbackFn) {
         // same as callbackFn:callbackFn
     };
 }
+// export function form(firstName, lastName, email) {
+//     return {
+//         type: FORM_LOGIN,
+//         payload: {
+//             firstName,
+//             lastName,
+//             email
+//         },
+        
+//         // same as callbackFn:callbackFn
+//     };
+// }
 
