@@ -4,7 +4,7 @@ import { Box, Button, Flex } from "rebass";
 
 import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form'
-import {compose} from 'redux';
+import { compose } from 'redux';
 
 
 import { routesClass } from "../../routesClass";
@@ -54,6 +54,15 @@ const loginForm = (props) => {
           />
         </div>
       </div>
+      <div>
+        <label htmlFor="password">Password</label> <br />
+        <Field
+          type="password"
+          name="password"
+          component="input"
+          placeholder="Password"
+        />
+      </div>
 
       <div>
         <button type="submit" disabled={pristine || submitting}>Submit</button>
@@ -72,28 +81,47 @@ function mapStateToProps(state) {
   }
 }
 
- //const validations = (values) => {
+//const validations = (values) => {
 function mapDispatchToProps(dispatch) {
   return {
     onSubmit: (values) => {
       //console.log("submit");
-     
-        const errors = {};
-        if (!values.firstName) {
-          errors.firstName = "Required";
-        } else if (values.firstName.length > 15) {
-          errors.firstName = "Must be 15 characters or less";
-        }
-        if (!values.lastName) {
-          errors.lastName = "Required";
-        } else if (values.lastName.length > 15) {
-          errors.lastName = "Must be 15 characters or less";
-        }
-        
-        console.log(values);
-        console.log("ERR", errors);
-        return errors;
-     // };
+
+      const errors = {};
+      
+      if (!values.firstName) {
+        errors.firstName = "Required";
+      } 
+      // else if(values.firstName){
+      //   errors.firstName = "Success";
+
+      // }
+      else if (values.firstName.length > 15) {
+        errors.firstName = "Must be 15 characters or less";
+      }
+      if (!values.lastName) {
+        errors.lastName = "Required";
+      } else if (values.lastName.length > 15) {
+        errors.lastName = "Must be 15 characters or less";
+      }
+
+      if (!values.password) {
+        errors.password = "Required";
+      } else if (values.password.length < 4) {
+        errors.password = "Must be 4 characters or greater";
+      }
+
+      if (values.password,values.firstName,values.lastName) {
+        console.log("success");
+      } 
+    // if (values)
+    //   else console.log("submit");
+
+      console.log(values);
+      console.log("Message", errors);
+      return errors;
+      
+      // };
       // function onSubmit(values) {
       //   values.preventDefault();
       //   console.log(values);
@@ -104,8 +132,8 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
- const withconnect = connect(mapStateToProps, mapDispatchToProps)
+const withconnect = connect(mapStateToProps, mapDispatchToProps)
 
-export default compose (withconnect,reduxForm({
+export default compose(withconnect, reduxForm({
   form: 'loginForm'  // a unique identifier for this form
-}) )(loginForm);
+}))(loginForm);
