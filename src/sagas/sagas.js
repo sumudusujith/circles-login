@@ -1,25 +1,31 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 
 import { getData } from "../fetch";
-import { sagalogin } from '../redux/actions';
+import { sagalogin,formDashboardAction } from '../redux/actions';
+import { SAGA_LOGIN,LOGIN_RESPONSE,FORM_RESPONSE ,FORM_LOGIN} from '../redux/actions/actionTypes';
 
 
 
 
-export function* fetchUser({ payload }) {
+
+
+export function* fetchUser({ payload,callbackFn }) {
   try {
-    console.log("payload");
-    const user = yield call(getData, payload.email, payload.password);
+ 
+    const response = yield call(getData, payload.email, payload.password);
+    yield put({ type: FORM_RESPONSE, payload: response }); 
+    callbackFn();
     //console.log('object');
-    yield put({ type: "LOGIN_RESPONSE", payload: user });   //check
+     //check
   } catch (e) {
-    yield put({ type: sagalogin, message: e.message });
+    yield put({ type: formDashboardAction, message: e.message });
+    console.log('Error_invalid input ',e.massege);
   }
 }
 export function* getUserData() { }
 
 export function* mySaga() {
-  yield takeLatest("SAGA_LOGIN", fetchUser);
+  yield takeLatest(FORM_LOGIN, fetchUser);
 }
 
 

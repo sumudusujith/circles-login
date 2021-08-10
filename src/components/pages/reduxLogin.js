@@ -1,7 +1,14 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useHistory } from 'react';
 import { Box, Button, Flex } from "rebass";
-
+//import { Dashboard } from "./components/pages/Dashboard";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
+//import history from './history'
 import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form'
 import { compose } from 'redux';
@@ -10,16 +17,16 @@ import { compose } from 'redux';
 import { routesClass } from "../../routesClass";
 
 
-import { incrementBy, sagalogin, form } from "../../redux/actions";
+import { incrementBy, sagalogin, form, formDashboardAction } from "../../redux/actions";
 //import getData from "../../fetch";
 
 const loginForm = (props) => {
+  console.log("PROPS", props);
   const { handleSubmit, pristine, reset, submitting } = props
-
+ // const history = useHistory();
 
 
   return (
-
     <form onSubmit={handleSubmit}>
       <div>
         <label>First Name</label>
@@ -77,21 +84,22 @@ const loginForm = (props) => {
 
 function mapStateToProps(state) {
   return {
-
+//no nee emil pw ,bcz its in  the state
   }
 }
 
 //const validations = (values) => {
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch,ownProps) {
+  
   return {
     onSubmit: (values) => {
       //console.log("submit");
 
       const errors = {};
-      
+
       if (!values.firstName) {
         errors.firstName = "Required";
-      } 
+      }
       // else if(values.firstName){
       //   errors.firstName = "Success";
 
@@ -112,15 +120,19 @@ function mapDispatchToProps(dispatch) {
       }
 
       if (values.password && values.firstName && values.lastName) {
-        console.log("success");
-      } 
-    // if (values)
-    //   else console.log("submit");
+        dispatch(formDashboardAction(values.email, values.password, () => {
+          ownProps.history.push("/dashboard");
+                      //debugger        
+        }));
+      }
+      // if (values)
+      //   else console.log("submit");
 
       console.log(values);
       console.log("Message", errors);
       return errors;
-      
+// window.location = `${window.location.origin}/dashboard`;
+//const history = useHistory();
       // };
       // function onSubmit(values) {
       //   values.preventDefault();
@@ -128,12 +140,18 @@ function mapDispatchToProps(dispatch) {
       // }
       //   validations(values);
       // }
-
     }
   }
 }
 const withconnect = connect(mapStateToProps, mapDispatchToProps)
 
 export default compose(withconnect, reduxForm({
-  form: 'loginForm'  // a unique identifier for this form
+ //validate: validations,
+  form: 'loginForm'  // a unique identifier for this form | function declaration would be invalid, if we didn’t specify any name:
 }))(loginForm);
+
+// const reduxLogin = reduxForm({
+//   form: "loginForm",
+// })(loginForm);
+
+// export default reduxLogin;

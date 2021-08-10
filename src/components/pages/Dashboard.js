@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box,  Text, Flex } from "rebass";
 import { Header1 } from "../../constants/Header/Header1";
+import { form_Dashboard } from "../../redux/reducers/exampleReducer";
 import { routesClass } from "../../routesClass";
 
 export const Dashboard = () => {
@@ -75,3 +76,21 @@ export const Dashboard = () => {
     </Flex>
   );
 };
+// const mapStateToProps = (state) => {
+//   console.log("state", state);
+//   return {
+//     email: state.example.email,
+//     name: state.login.name,
+//     origin: state.login.origin,
+//   };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     form_Dashboard: () => {
+//       dispatch(formDashboard());
+//     },
+//   };
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

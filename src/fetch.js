@@ -63,4 +63,26 @@ import { routesClass } from "./routesClass";
 
   
 };
+export const getFormData = (email,password,firstName,lastName) => {
+     
+  //const history = useHistory();
+//debugger
+
+return fetch(routesClass.user_url + `/user-service/user-details/${email}/${password}`) //servce file
+    .then((response) => response.json())
+    .then(function setValues(response) {
+        
+      //  if (response.token === "A_guid") {
+            console.log(response);
+            return response;
+            //props.up
+      //       history.push("/dashboard");
+      //  // } else {
+      //       console.log(response);
+      //      // setResponseMessage(routesClass.errorMessage);
+      //   }
+    });
+
+
+};
 //export default getData;

@@ -6,14 +6,16 @@ import reportWebVitals from './reportWebVitals';
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
-
+//import history from './history'
 //import { createStore, applyMiddleware } from 'redux'
 
 //const action = type => store.dispatch({type})
 ReactDOM.render(
+  
   <React.StrictMode>
 
     <Provider store={store}>
+      
       {/* <Container></Container> */}
       {/* <Counter
       value={store.getState()}
@@ -25,6 +27,7 @@ ReactDOM.render(
       //<loginForm onSubmit={showResults} />
       <Values form="simple" />
     </div> */}
+
       <App />
     </Provider>
   </React.StrictMode>,

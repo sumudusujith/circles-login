@@ -9,13 +9,17 @@ import  Login  from "./components/pages/Login";
 import { Dashboard } from "./components/pages/Dashboard";
 import { routesClass } from "./routesClass";
 import reduxLogin from "./components/pages/reduxLogin";
-
-
+//import history from './history'
+//import { History } from 'react-router';
 export const Routes = () => {
+  //const history = useHistory();
   return (
+    //<Router >
     <div>
-      <Router>
+      {/* //Router history={history}> */}
+      <Router >
         <Switch>
+      
           <Route exact path={routesClass.routeToLogin} component={reduxLogin} />
 
           <Route exact path="/dashboard" component={Dashboard} />
@@ -26,3 +30,4 @@ export const Routes = () => {
     </div>
   );
 };
+//<Router history={history}>

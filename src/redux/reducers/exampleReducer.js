@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, LOGIN, SAGA_LOGIN , FORM_LOGIN } from "../actions/actionTypes";
+import { INCREMENT, DECREMENT, LOGIN, FORM_RESPONSE, SAGA_LOGIN, FORM_LOGIN, LOGIN_RESPONSE } from "../actions/actionTypes";
 
 const initialState = {
     total: 0,
@@ -15,12 +15,11 @@ const sagaUser = {
     password: null
 };
 
-// const formUser = {
-//     firstName:null,
-//     lastName:null,
-//     email: null,
-    
-// };
+const formUser = {
+    email: null,
+    password: null
+
+};
 
 export default function exampleReducer(state = initialState, action) {
 
@@ -67,7 +66,7 @@ export function loginReducer(state = initialUser, action) {
 //                 firstName: action.payload.firstName,
 //                 lastName: action.payload.lastName,
 //                 email: action.payload.email,
-             
+
 
 //             }
 //         default:
@@ -77,7 +76,7 @@ export function loginReducer(state = initialUser, action) {
 // }
 
 
-export function sagaLoginReducer(state =sagaUser, action) {
+export function sagaLoginReducer(state = sagaUser, action) {
 
     switch (action.type) {
         case SAGA_LOGIN:
@@ -85,15 +84,33 @@ export function sagaLoginReducer(state =sagaUser, action) {
                 ...state,
                 email: action.payload.email,
                 password: action.payload.password,
-
-            }; //semi colon q
-        case "LOGIN_RESPONSE": //double quotes
+            };
+        case LOGIN_RESPONSE:
             return {
                 ...state,
                 //email: action.payload.email,
-                //password: action.payload.password,
-                loginResponse: action.payload,
+               // password: action.payload.password,
+               // loginResponse: action.payload,
 
+            };
+        default:
+            return state;
+    }
+}
+export function form_DashboardReducer(state = formUser, action) {
+    switch (action.type) {
+        case FORM_LOGIN:
+            return {
+                ...state,
+                email: action.payload.email,
+                password: action.payload.password,
+            };
+        case FORM_RESPONSE:
+            return {
+                ...state,
+                // email: action.payload.email,
+                // password: action.payload.password,
+                loginResponse: action.payload,
             };
         default:
             return state;
