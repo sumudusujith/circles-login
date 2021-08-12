@@ -4,7 +4,8 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
 // enable CORS - It’s an express middleware for enabling Cross-Origin Resource Sharing requests. Just because of it, We can access the API in different applications.
-app.use(cors());
+//app.use(cors());
+app.use(cors(), express.urlencoded({ extended: false }));
 
 app.get("/user-service/user-details", (req, res) => {
   res.send({
@@ -46,6 +47,33 @@ app.get("/user-service/login/:email/:password", (req, res) => {
     });
   }
 });
+
+
+app.post("/user-service/login", function (req, res) {
+  console.log(req.body);
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+  console.log("email : ", email, "password: ", password);
+  if (
+    email === "admin@circles.asia" &&  password === "circles111"
+    // email?.trim() === "admin@circles.asia" &&
+    // password?.trim() === "circles111"
+  ) {
+    console.log("Hooray, It's working.");
+    res.json({
+      token: "123",
+      message: `Hello from server! ${email}`,
+    });
+  } else {
+    res.json({
+      status: "fail",
+      message: "Oh no, Login is not working.",
+    });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on  http://localhost:5000 ${PORT}`);

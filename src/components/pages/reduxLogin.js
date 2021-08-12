@@ -1,30 +1,13 @@
-
-import React, { useState, useEffect, useHistory } from 'react';
-import { Box, Button, Flex } from "rebass";
-//import { Dashboard } from "./components/pages/Dashboard";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from "react-router-dom";
-//import history from './history'
 import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form'
 import { compose } from 'redux';
 
+import { form, formDashboardAction } from "../../redux/actions";
 
-import { routesClass } from "../../routesClass";
-
-
-import { incrementBy, sagalogin, form, formDashboardAction } from "../../redux/actions";
-//import getData from "../../fetch";
 
 const loginForm = (props) => {
   console.log("PROPS", props);
   const { handleSubmit, pristine, reset, submitting } = props
- // const history = useHistory();
-
 
   return (
     <form onSubmit={handleSubmit}>
