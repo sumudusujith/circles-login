@@ -1,11 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 
-import { getData } from "../fetch";
+import { getData,configFetchData } from "../fetch";
 import { sagalogin,formDashboardAction } from '../redux/actions';
-import { SAGA_LOGIN,LOGIN_RESPONSE,FORM_RESPONSE ,FORM_LOGIN} from '../redux/actions/actionTypes';
-
-
-
+import { SAGA_LOGIN,CDD_VALUES,FORM_RESPONSE ,FORM_LOGIN} from '../redux/actions/actionTypes';
 
 
 
@@ -22,11 +19,32 @@ export function* fetchUser({ payload,callbackFn }) {
     console.log('Error_invalid input ',e.massege);
   }
 }
-export function* getUserData() { }
+
 
 export function* mySaga() {
   yield takeLatest(FORM_LOGIN, fetchUser);
+  //yield takeLatest(CDD_VALUES, cddSaga);
 }
+
+
+
+
+
+
+// export function* cddSaga(payload) {
+//   try{ 
+//   const cddResponse = yield call(configFetchData,payload.login_Header,payload.dashBoard_Header);
+//     yield put({ type: CDD_VALUES, payload: cddResponse }); 
+//     //callbackFn();
+//     //console.log('object');
+//      //check
+//   } catch (e) {
+//     //yield put({ type: formDashboardAction, message: e.message });
+//     //console.log('Error_invalid input ',e.massege);
+//   }
+// }
+
+
 
 
 //import {SAGA_LOGIN, LOGIN_RESPONSE} from "../redux/actions/actionTypes"

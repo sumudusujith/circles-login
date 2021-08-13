@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, LOGIN, SAGA_LOGIN ,FORM_DASHBOARD, FORM_LOGIN} from "./actionTypes"
+import { INCREMENT, DECREMENT, LOGIN, SAGA_LOGIN, FORM_LOGIN, CDD_VALUES } from "./actionTypes"
 //actions
 export function incrementBy(payload) {
     return { type: INCREMENT, payload }
@@ -31,14 +31,38 @@ export function sagalogin(email, password, callbackFn) {
 }
 export function formDashboardAction(email, password, callbackFn) {
     return {
-      type: FORM_LOGIN,
-      payload: {
-        email,
-        password
-    },
-    callbackFn,
+        type: FORM_LOGIN,
+        payload: {
+            email,
+            password
+        },
+        callbackFn,
     };
-  }
+}
+
+
+export function configAction(configData) {
+    return {
+        type: CDD_VALUES,
+        payload: configData,
+    };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // export function form(firstName, lastName, email) {
 //     return {
 //         type: FORM_LOGIN,
@@ -47,7 +71,7 @@ export function formDashboardAction(email, password, callbackFn) {
 //             lastName,
 //             email
 //         },
-        
+
 //         // same as callbackFn:callbackFn
 //     };
 // }

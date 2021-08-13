@@ -7,66 +7,93 @@ const PORT = process.env.PORT || 5000;
 //app.use(cors());
 app.use(cors(), express.urlencoded({ extended: false }));
 
-app.get("/user-service/user-details", (req, res) => {
+app.get("/app-settings", (req, res) => {
   res.send({
+    login: {
+      login_Header: " cdd_test",
+    },
+    dashboard: {
+      dashboard_Header: "cdd_test2 ",
+    },
+  });
+});
+
+
+app.get("/user-service/user-details", (req, res) => {
+  // await sleep(500);
+  res.json({
     emailaddress: "admin@circles.asia",
-    // password: "circles111",
     name: "Admin 1",
     origin: "Colombo",
   });
 });
-// validate the user credentials
-app.get("/user-service/login/:email/:password", (req, res) => {
+
+
+
+//validate the user credentials
+// app.get("/user-service/login/:email/:password", (req, res) => {
+//   const email = req.params.email;
+//   const password = req.params.password;
+
+//   console.log(email);
+//   console.log(password);
+
+//   if (
+
+//     email === "admin@circles.asia" && password === "circles111"
+//   ) {
+//     console.log("Hooray, It's working.");
+//     res.json({
+//       token: "123",
+//       message: `Hello from server! ${email}`,
+//     });
+//     } if (password !== "circles111") {
+//       console.log("Oh no, Login is not working.");
+//       res.json({
+//         status: "fail",
+//         message: "Password required."
+//       });
+//   }
+
+//   else {
+//     res.json({
+//       status: "fail",
+//       message: "Oh no, Login is not working.",
+//     });
+//   }
+// });
+
+
+
+app.post("/user-service/login/:email/:password",  (req, res) => {
   const email = req.params.email;
   const password = req.params.password;
 
   console.log(email);
   console.log(password);
+  
+  // console.log(req.body);
 
-  if (
-
-    email === "admin@circles.asia" &&  password === "circles111"
-  ) {
-    console.log("Hooray, It's working.");
-    res.json({
-      token: "123",
-      message: `Hello from server! ${email}`,
-    });
-    } if (password !== "circles111") {
-      console.log("Oh no, Login is not working.");
-      res.json({
-        status: "fail",
-        message: "Password required."
-      });
-  }
-
-  else  {
-    res.json({
-      status: "fail",
-      message: "Oh no, Login is not working.",
-    });
-  }
-});
-
-
-app.post("/user-service/login", function (req, res) {
-  console.log(req.body);
-
-  const email = req.body.email;
-  const password = req.body.password;
+  // const email = req.body.email;
+  // const password = req.body.password;
 
   console.log("email : ", email, "password: ", password);
   if (
-    email === "admin@circles.asia" &&  password === "circles111"
-    // email?.trim() === "admin@circles.asia" &&
-    // password?.trim() === "circles111"
+    email === "admin@circles.asia" && password === "circles111"
   ) {
     console.log("Hooray, It's working.");
     res.json({
       token: "123",
       message: `Hello from server! ${email}`,
     });
-  } else {
+  // } if (password !== "circles111") {
+  //   console.log("Oh no, Login is not working.");
+  //   res.json({
+  //     status: "fail",
+  //     message: "Password required."
+  //   });
+   }
+   else {
     res.json({
       status: "fail",
       message: "Oh no, Login is not working.",
@@ -79,6 +106,20 @@ app.listen(PORT, () => {
   console.log(`Server listening on  http://localhost:5000 ${PORT}`);
 });
 
+
+
+
+
+
+
+
+
+
+// function sleep(ms) {
+//   return new Promise((resolve) => {
+//     setTimeout(resolve, ms);
+//   });
+// }
 // app.listen(5000, () => {
 //   console.log("API is running on http://localhost:5000");
 // });

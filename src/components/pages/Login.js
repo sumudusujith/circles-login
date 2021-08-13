@@ -235,7 +235,7 @@ function mapStateToProps(state) {
         grandTotal: state.example.total,
         email: state.login.email,
         password: state.login.password,
-        loginResponse: state.sagaloginNew?.loginResponse?.status, //y q
+        //loginResponse: state.sagaloginNew?.loginResponse?.status, //y q
     };
 };
 

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux"; // first pakcge imoprt
-import  exampleReducer,{ loginReducer ,sagaLoginReducer,form_DashboardReducer}  from "./exampleReducer";
+import  exampleReducer,{ loginReducer ,sagaLoginReducer,form_DashboardReducer,cddValuesReducer}  from "./exampleReducer";
 import { reducer as formReducer } from 'redux-form';
 
 
@@ -10,6 +10,7 @@ const rootReducer= combineReducers({
     sagaloginNew:sagaLoginReducer,
     form: formReducer,
     form_DashboardReducer:form_DashboardReducer,
+    cddValuesReducer:cddValuesReducer,
 });
 
 export default rootReducer;

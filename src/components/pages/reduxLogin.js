@@ -1,16 +1,37 @@
 import { connect } from "react-redux";
+  
+import React, { useEffect } from "react";
 import { Field, reduxForm } from 'redux-form'
 import { compose } from 'redux';
-
-import { form, formDashboardAction } from "../../redux/actions";
+import { Header1 } from "../../constants/Header/Header1";
+import { configAction, form, formDashboardAction } from "../../redux/actions";
 
 
 const loginForm = (props) => {
   console.log("PROPS", props);
-  const { handleSubmit, pristine, reset, submitting } = props
-
+  const { handleSubmit, pristine, reset, submitting ,configLogin} = props
+  // useEffect(() => {
+  //   configLogin();
+  // }, [configLogin]);
   return (
     <form onSubmit={handleSubmit}>
+       <Header1
+                name={"Ready to take a challenge?"}
+                fontSize="4rem"
+                textAlign="center"
+                color='vlack'
+                fontFamily="Candara"
+                mb='2rem'
+            />
+     <Header1
+
+name={"Login to pick a Challenge!"}
+fontSize="1rem"
+textAlign="center"
+color='black'
+fontFamily="Verdana"
+
+/>
       <div>
         <label>First Name</label>
         <div>
@@ -68,6 +89,9 @@ const loginForm = (props) => {
 function mapStateToProps(state) {
   return {
 //no nee emil pw ,bcz its in  the state
+// email: state.form?.loginForm?.values?.email,
+//     password: state.form?.loginForm?.values?.password,
+//loginResponse: state.sagaloginNew?.loginResponse?.status,
   }
 }
 
@@ -75,9 +99,12 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch,ownProps) {
   
   return {
-    onSubmit: (values) => {
+  //   configLogin: () => {
+  //   dispatch(configAction(() => {}));
+  // },
+    
+    onSubmit: (values) => {      
       //console.log("submit");
-
       const errors = {};
 
       if (!values.firstName) {
@@ -105,12 +132,9 @@ function mapDispatchToProps(dispatch,ownProps) {
       if (values.password && values.firstName && values.lastName) {
         dispatch(formDashboardAction(values.email, values.password, () => {
           ownProps.history.push("/dashboard");
-                      //debugger        
+         
         }));
       }
-      // if (values)
-      //   else console.log("submit");
-
       console.log(values);
       console.log("Message", errors);
       return errors;
@@ -123,15 +147,21 @@ function mapDispatchToProps(dispatch,ownProps) {
       // }
       //   validations(values);
       // }
-    }
-  }
-}
+      },     
+  };  
+};
 const withconnect = connect(mapStateToProps, mapDispatchToProps)
 
 export default compose(withconnect, reduxForm({
  //validate: validations,
   form: 'loginForm'  // a unique identifier for this form | function declaration would be invalid, if we didn’t specify any name:
 }))(loginForm);
+
+
+
+
+
+
 
 // const reduxLogin = reduxForm({
 //   form: "loginForm",

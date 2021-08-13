@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, LOGIN, FORM_RESPONSE, SAGA_LOGIN, FORM_LOGIN, LOGIN_RESPONSE } from "../actions/actionTypes";
+import { INCREMENT, DECREMENT, LOGIN, FORM_RESPONSE, SAGA_LOGIN, FORM_LOGIN, LOGIN_RESPONSE ,CDD_VALUES} from "../actions/actionTypes";
 
 const initialState = {
     total: 0,
@@ -20,6 +20,26 @@ const formUser = {
     password: null
 
 };
+
+const configUser = {
+    login_Header: null,
+    login_SubHeader: null,
+    dashBoard_Header: null,
+  };
+
+  export function cddValuesReducer(state = configUser , action) {
+    switch (action.type) {
+      case CDD_VALUES:
+        return {
+          ...state,
+          login_Header: action.payload.login_Header,
+          login_SubHeader: action.payload.login_SubHeader,
+          dashBoard_Header: action.payload.dashBoard_Header,
+        };
+      default:
+        return state;
+    }
+  }
 
 export default function exampleReducer(state = initialState, action) {
 
