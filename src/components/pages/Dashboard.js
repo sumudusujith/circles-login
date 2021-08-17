@@ -86,7 +86,7 @@ const mapStateToProps = (state) => {
     email: state.example.email,
     name: state.login.name,
     origin: state.login.origin,
-    dashboard_Header: state.cddValuesReducer.dashboard_Header,
+    dashboard_Header: state.configValuesReducer.dashboard_Header,
   };
 };
 

@@ -1,14 +1,14 @@
-import { INCREMENT, DECREMENT, LOGIN, FORM_RESPONSE, CDD_RESPONSE, SAGA_LOGIN, FORM_LOGIN, LOGIN_RESPONSE, CDD_VALUES } from "../actions/actionTypes";
+import { INCREMENT_ACTION, DECREMENT_ACTION, USER_LOGIN_ACTION, FORM_RESPONSE_DATA_ACTION, CDD_RESPONSE, SAGA_LOGIN_ACTION, FORM_LOGIN_DATA_ACTION, LOGIN_RESPONSE_ACTION, CONFIG_SETTINGS_ACTION, CONFIG_RESPONSE_ACTION } from "../actions/actionTypes";
 
 const initialState = {
     total: 0,
     name: "Total",
-    //total: result
+
 }
 
 const initialUser = {
     email: null,
-    password: null //comma q
+    password: null
 }
 const sagaUser = {
     email: null,
@@ -28,9 +28,9 @@ const configUser = {
     dashboard_SubHeader: null,
 };
 
-export function cddValuesReducer(state = configUser, action) {
+export function configValuesReducer(state = configUser, action) {
     switch (action.type) {
-        case CDD_VALUES:
+        case CONFIG_SETTINGS_ACTION:
             return {
                 ...state,
                 login_Header: action.payload.login_Header,
@@ -38,7 +38,7 @@ export function cddValuesReducer(state = configUser, action) {
                 dashboard_Header: action.payload.dashboard_Header,
                 dashboard_SubHeader: action.payload.dashboard_SubHeader,
             };
-        case CDD_RESPONSE:
+        case CONFIG_RESPONSE_ACTION:
             return {
                 ...state,
                 cddResponse: action.payload,
@@ -51,14 +51,14 @@ export function cddValuesReducer(state = configUser, action) {
 export default function exampleReducer(state = initialState, action) {
 
     switch (action.type) {
-        case INCREMENT:
+        case INCREMENT_ACTION:
 
             return {
                 ...state,
                 total: state.total + action.payload,
             };
 
-        case DECREMENT:
+        case DECREMENT_ACTION:
 
             return {
                 ...state,
@@ -71,7 +71,7 @@ export default function exampleReducer(state = initialState, action) {
 export function loginReducer(state = initialUser, action) {
 
     switch (action.type) {
-        case LOGIN:
+        case USER_LOGIN_ACTION:
             return {
 
                 ...state,
@@ -84,59 +84,37 @@ export function loginReducer(state = initialUser, action) {
     }
 }
 
-// export function formReducer (state=formUser ,action){
-//     switch (action.type) {
-//         case FORM_LOGIN:
-//             return {
-
-//                 ...state,
-//                 firstName: action.payload.firstName,
-//                 lastName: action.payload.lastName,
-//                 email: action.payload.email,
-
-
-//             }
-//         default:
-//             return state;
-//     }
-
-// }
-
-
 export function sagaLoginReducer(state = sagaUser, action) {
 
     switch (action.type) {
-        case SAGA_LOGIN:
+        case SAGA_LOGIN_ACTION:
             return {
                 ...state,
                 email: action.payload.email,
                 password: action.payload.password,
             };
-        case LOGIN_RESPONSE:
+        case LOGIN_RESPONSE_ACTION:
             return {
                 ...state,
-                //email: action.payload.email,
-                // password: action.payload.password,
-                // loginResponse: action.payload,
 
             };
         default:
             return state;
     }
 }
+
 export function form_DashboardReducer(state = formUser, action) {
     switch (action.type) {
-        case FORM_LOGIN:
+        case FORM_LOGIN_DATA_ACTION:
             return {
                 ...state,
                 email: action.payload.email,
                 password: action.payload.password,
             };
-        case FORM_RESPONSE:
+        case FORM_RESPONSE_DATA_ACTION:
             return {
                 ...state,
-                // email: action.payload.email,
-                // password: action.payload.password,
+
                 loginResponse: action.payload,
             };
         default:

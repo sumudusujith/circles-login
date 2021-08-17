@@ -108,8 +108,8 @@ const mapStateToProps = (state) => {
     // email: state.form?.loginForm?.values?.email,
     //     password: state.form?.loginForm?.values?.password,
     //loginResponse: state.sagaloginNew?.loginResponse?.status,
-    login_Header: state.cddValuesReducer.cddResponse?.login_Header,
-    login_SubHeader: state.cddValuesReducer.cddResponse?.login_SubHeader,
+    login_Header: state.configValuesReducer.cddResponse?.login_Header,
+    login_SubHeader: state.configValuesReducer.cddResponse?.login_SubHeader,
   };
 };
 
