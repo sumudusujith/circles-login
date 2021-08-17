@@ -6,7 +6,7 @@ import { CONFIG_RESPONSE_ACTION, CONFIG_SETTINGS_ACTION, FORM_RESPONSE_DATA_ACTI
 
 export function* cddSaga({ payload }) {
   try {
-    const configData = yield call(configFetchData, payload.login_Header, payload.login_SubHeader);
+    const configData = yield call(configFetchData, payload.login_Header, payload.login_SubHeader,payload.dashboard_Header,payload.dashboard_SubHeader);
     yield put({ type: CONFIG_RESPONSE_ACTION, payload: configData });
   } catch (e) {
   }

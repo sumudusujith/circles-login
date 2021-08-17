@@ -1,12 +1,10 @@
 import { connect } from "react-redux";
-
 import React, { useEffect } from "react";
 import { Field, reduxForm } from 'redux-form'
 import { compose } from 'redux';
 
 import { formDashboardAction, getconfigAction } from "../../redux/actions";
 import { Header1 } from "../../constants/Header/RebassHeader";
-
 
 const LoginForm = (props) => {
   console.log("PROPS", props);
@@ -20,7 +18,6 @@ const LoginForm = (props) => {
     login_SubHeader,
     login_Header
   } = props;
-
 
   useEffect(() => { // to call api
     configLogin();
@@ -100,7 +97,6 @@ const LoginForm = (props) => {
   )
 }
 
-
 const mapStateToProps = (state) => {
   console.log("state works!", state);
   return {
@@ -108,11 +104,10 @@ const mapStateToProps = (state) => {
     // email: state.form?.loginForm?.values?.email,
     //     password: state.form?.loginForm?.values?.password,
     //loginResponse: state.sagaloginNew?.loginResponse?.status,
-    login_Header: state.configValuesReducer.cddResponse?.login_Header,
-    login_SubHeader: state.configValuesReducer.cddResponse?.login_SubHeader,
+    login_Header: state.configValuesReducer.configResponse?.login_Header,
+    login_SubHeader: state.configValuesReducer.configResponse?.login_SubHeader,
   };
 };
-
 //const validations = (values) => {
 function mapDispatchToProps(dispatch, ownProps) {
 
@@ -120,7 +115,6 @@ function mapDispatchToProps(dispatch, ownProps) {
     configLogin: (login_Header, login_SubHeader) => {
       dispatch(getconfigAction(login_Header, login_SubHeader, () => {
         console.log("action works!");
-
       }));
     },
     onSubmit: (values) => {
@@ -158,13 +152,10 @@ function mapDispatchToProps(dispatch, ownProps) {
       console.log(values);
       console.log("Message", errors);
       return errors;
-
     },
-
   };
 };
 const withconnect = connect(mapStateToProps, mapDispatchToProps)
-
 export default compose(withconnect, reduxForm({
   //validate: validations,
   form: 'LoginForm'  // a unique identifier for this form | function declaration would be invalid, if we didn’t specify any name:
@@ -173,13 +164,5 @@ export default compose(withconnect, reduxForm({
 
 
 
-
-
-
-// const reduxLogin = reduxForm({
-//   form: "loginForm",
-// })(loginForm);
-
-// export default reduxLogin;
 
 

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Box,  Text, Flex } from "rebass";
+import { Box, Text, Flex } from "rebass";
 import { Header1 } from "../../constants/Header/RebassHeader";
-
-
-import { form_Dashboard } from "../../redux/reducers/loginReducer";
+import {  getconfigAction } from "../../redux/actions";
 import { user_url } from "../../routesClass";
 
-export const Dashboard = ({dashboard_Header}) => {
+export const Dashboard = ({ configLogin, dashboard_Header, dashboard_SubHeader }) => {
   const [emailaddress, setEmailAddress1] = useState();
   const [name, setName] = useState();
   const [origin, setOrigin] = useState();
@@ -22,8 +20,10 @@ export const Dashboard = ({dashboard_Header}) => {
         setEmailAddress1(response.emailaddress);
         setName(response.name);
         setOrigin(response.origin);
+        
       });
-  }, []);
+    }, []);
+    
 
   return (
     <Flex
@@ -39,7 +39,7 @@ export const Dashboard = ({dashboard_Header}) => {
         fontSize='3rem'
         mb='2rem'
         name={dashboard_Header}
-        //name={" Hello! I see you got through the login"}
+      //name={" Hello! I see you got through the login"}
 
 
       />
@@ -66,7 +66,7 @@ export const Dashboard = ({dashboard_Header}) => {
             mb={[2, 3, 3]}
             fontSize={[3]}
             color="primary"
-
+            //name={dashboard_SubHeader}
             name={"Information"}
           />
           <Text fontSize={[2]} fontWeight="bold" fontFamily="Arial">
@@ -86,15 +86,20 @@ const mapStateToProps = (state) => {
     email: state.example.email,
     name: state.login.name,
     origin: state.login.origin,
-    dashboard_Header: state.configValuesReducer.dashboard_Header,
+    dashboard_Header: state.configValuesReducer.configResponse?.dashboard_Header,
+    dashboard_SubHeader: state.configValuesReducer.configResponse?.dashboard_SubHeader,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // form_Dashboard: () => {
-    //   dispatch(formDashboard());
-    // },
+    configLogin: (login_Header, login_SubHeader) => {
+      dispatch(getconfigAction(login_Header, login_SubHeader, () => {
+        console.log("action works!");
+
+      }));
+    },
+
   };
 };
 

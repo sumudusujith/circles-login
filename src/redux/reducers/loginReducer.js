@@ -41,7 +41,7 @@ export function configValuesReducer(state = configUser, action) {
         case CONFIG_RESPONSE_ACTION:
             return {
                 ...state,
-                cddResponse: action.payload,
+                configResponse: action.payload,
             };
         default:
             return state;
