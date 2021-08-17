@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Box,  Text, Flex } from "rebass";
+import { Header1 } from "../../constants/Header/RebassHeader";
 
-import { Header1 } from "../../constants/Header/Header1";
-import { form_Dashboard } from "../../redux/reducers/exampleReducer";
-import { routesClass } from "../../routesClass";
+
+import { form_Dashboard } from "../../redux/reducers/loginReducer";
+import { user_url } from "../../routesClass";
 
 export const Dashboard = ({dashboard_Header}) => {
   const [emailaddress, setEmailAddress1] = useState();
@@ -14,7 +15,7 @@ export const Dashboard = ({dashboard_Header}) => {
 
 
   useEffect(() => {    //perform side-effects in function components
-    fetch(routesClass.user_url + "/user-service/user-details")
+    fetch(user_url + "/user-service/user-details")
       .then((response) => response.json())
       .then(function setValues(response) {
         console.log(response);

@@ -1,16 +1,16 @@
-import { INCREMENT, DECREMENT, LOGIN, SAGA_LOGIN, GET_CDD_VALUES, FORM_LOGIN, CDD_VALUES } from "./actionTypes"
+import { INCREMENT_ACTION, DECREMENT_ACTION, USER_LOGIN_ACTION,SAGA_LOGIN_ACTION,FORM_LOGIN_DATA_ACTION, CONFIG_SETTINGS_ACTION } from "./actionTypes"
 //actions
 export function incrementBy(payload) {
-    return { type: INCREMENT, payload }
+    return { type: INCREMENT_ACTION, payload }
 }
 
 export function decrementBy(payload) {
-    return { type: DECREMENT, payload }
+    return { type:  DECREMENT_ACTION, payload }
 }
 
 export function login(email, password) {
     return {
-        type: LOGIN,
+        type: USER_LOGIN_ACTION,
         payload: {
             email,
             password
@@ -20,7 +20,7 @@ export function login(email, password) {
 
 export function sagalogin(email, password, callbackFn) {
     return {
-        type: SAGA_LOGIN,
+        type: SAGA_LOGIN_ACTION,
         payload: {
             email,
             password
@@ -31,7 +31,7 @@ export function sagalogin(email, password, callbackFn) {
 }
 export function formDashboardAction(email, password, callbackFn) {
     return {
-        type: FORM_LOGIN,
+        type: FORM_LOGIN_DATA_ACTION,
         payload: {
             email,
             password
@@ -40,15 +40,9 @@ export function formDashboardAction(email, password, callbackFn) {
     };
 }
 
-// export function configAction() {
-//     return {
-//         type: CDD_VALUES,
-
-//     };
-// }
 export function getconfigAction(login_Header, login_SubHeader) {
     return {
-        type: CDD_VALUES,
+        type: CONFIG_SETTINGS_ACTION,
         payload: {
             login_Header,
             login_SubHeader
@@ -69,18 +63,4 @@ export function getconfigAction(login_Header, login_SubHeader) {
 
 
 
-
-
-// export function form(firstName, lastName, email) {
-//     return {
-//         type: FORM_LOGIN,
-//         payload: {
-//             firstName,
-//             lastName,
-//             email
-//         },
-
-//         // same as callbackFn:callbackFn
-//     };
-// }
 

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux"; // first pakcge imoprt
-import  exampleReducer,{ loginReducer ,sagaLoginReducer,form_DashboardReducer,cddValuesReducer}  from "./exampleReducer";
+import  exampleReducer,{ loginReducer ,sagaLoginReducer,form_DashboardReducer,cddValuesReducer}  from "./loginReducer";
 import { reducer as formReducer } from 'redux-form';
 
 

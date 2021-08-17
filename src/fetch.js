@@ -1,12 +1,12 @@
 import React from "react";
-import { routesClass } from "./routesClass";
+import { user_url } from "./routesClass";
 //  const email = "admin@circles.asia" ;
 //   const password = "circles111";
 // const fData = { email,password};
 
 
 export const getData = (email, password) => {
-  return fetch(routesClass.user_url + `/user-service/login`, {
+  return fetch(user_url + `/user-service/login`, {
     //  POST request using fetch()
     method: 'post', // or 'PUT'
     headers: {// Adding headers to the request
@@ -33,7 +33,7 @@ export const getData = (email, password) => {
   // });
 };
 export const configFetchData = () => {
-  return fetch(routesClass.user_url + "/app-settings")
+  return fetch(user_url + "/app-settings")
     .then((response) => response.json())
     .then(function (response) {
       console.log(response);

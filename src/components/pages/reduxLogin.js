@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import React, { useEffect } from "react";
 import { Field, reduxForm } from 'redux-form'
 import { compose } from 'redux';
-import { Header1 } from "../../constants/Header/Header1";
+
 import { formDashboardAction, getconfigAction } from "../../redux/actions";
+import { Header1 } from "../../constants/Header/RebassHeader";
 
 
 const LoginForm = (props) => {

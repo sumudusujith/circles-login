@@ -5,14 +5,15 @@ import { Input } from "@rebass/forms";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { Header1 } from "../../constants/Header/Header1";
+
 import { Label } from "../../constants/Header/Text";
 //import { RebassInput } from "../../constants/Header/Input";
 
-import { routesClass } from "../../routesClass";
+import {errorMessage } from "../../routesClass";
 
 
 import { incrementBy,  sagalogin } from "../../redux/actions/";
+import { Header1 } from "../../constants/Header/RebassHeader";
 //import getData from "../../fetch";
 
 
@@ -38,7 +39,7 @@ const Login = (props) => {
         if (loginResponse === "success") {
             history.push("/dashboard");
         } else {
-            setResponseMessage(routesClass.errorMessage);
+            setResponseMessage(errorMessage);
         }
     },
         [loginResponse]
