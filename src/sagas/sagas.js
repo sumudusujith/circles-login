@@ -1,29 +1,42 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 
-import { getData,configFetchData } from "../fetch";
-import { sagalogin,formDashboardAction } from '../redux/actions';
-import { SAGA_LOGIN,CDD_VALUES,FORM_RESPONSE ,FORM_LOGIN} from '../redux/actions/actionTypes';
+import { getData, configFetchData } from "../fetch";
+import { sagalogin, formDashboardAction ,getconfigAction} from '../redux/actions';
+import { SAGA_LOGIN, CDD_RESPONSE, CDD_VALUES, FORM_RESPONSE, FORM_LOGIN } from '../redux/actions/actionTypes';
 
-
-
-export function* fetchUser({ payload,callbackFn }) {
+export function* cddSaga({payload}) {
+  //debugger
   try {
- 
+    const configData = yield call(configFetchData,payload.login_Header,payload.login_SubHeader);
+    yield put({ type:CDD_RESPONSE, payload: configData });
+    
+  } catch (e) {
+  //  yield put({ type: getconfigAction, message: e.message });//saga will not continue to run to the next yield until the API call finishes
+   // console.log('Not Working ',e.massege);
+  }
+}
+
+export function* fetchUser({ payload, callbackFn }) {
+  try {
+
     const response = yield call(getData, payload.email, payload.password);
-    yield put({ type: FORM_RESPONSE, payload: response }); 
+    //debugger
+    yield put({ type: FORM_RESPONSE, payload: response });
+
     callbackFn();
     //console.log('object');
-     //check
+    //check
   } catch (e) {
     yield put({ type: formDashboardAction, message: e.message });
-    console.log('Error_invalid input ',e.massege);
+    console.log('Error_invalid input ', e.massege);//error
   }
 }
 
 
+
 export function* mySaga() {
   yield takeLatest(FORM_LOGIN, fetchUser);
-  //yield takeLatest(CDD_VALUES, cddSaga);
+  yield takeLatest(CDD_VALUES, cddSaga);
 }
 
 
@@ -31,18 +44,7 @@ export function* mySaga() {
 
 
 
-// export function* cddSaga(payload) {
-//   try{ 
-//   const cddResponse = yield call(configFetchData,payload.login_Header,payload.dashBoard_Header);
-//     yield put({ type: CDD_VALUES, payload: cddResponse }); 
-//     //callbackFn();
-//     //console.log('object');
-//      //check
-//   } catch (e) {
-//     //yield put({ type: formDashboardAction, message: e.message });
-//     //console.log('Error_invalid input ',e.massege);
-//   }
-// }
+
 
 
 

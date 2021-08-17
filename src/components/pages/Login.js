@@ -23,7 +23,7 @@ import { incrementBy,  sagalogin } from "../../redux/actions/";
 
 const Login = (props) => {
     console.log("Props", props); //q props
-    const { loginResponse, saveLogin } = props;
+    const {loginResponse, saveLogin } = props;
     const [email, setemail] = useState("");//camelcase
     const [password, setpassword] = useState("");
 

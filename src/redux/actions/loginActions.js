@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, LOGIN, SAGA_LOGIN, FORM_LOGIN, CDD_VALUES } from "./actionTypes"
+import { INCREMENT, DECREMENT, LOGIN, SAGA_LOGIN, GET_CDD_VALUES, FORM_LOGIN, CDD_VALUES } from "./actionTypes"
 //actions
 export function incrementBy(payload) {
     return { type: INCREMENT, payload }
@@ -40,11 +40,19 @@ export function formDashboardAction(email, password, callbackFn) {
     };
 }
 
+// export function configAction() {
+//     return {
+//         type: CDD_VALUES,
 
-export function configAction(configData) {
+//     };
+// }
+export function getconfigAction(login_Header, login_SubHeader) {
     return {
         type: CDD_VALUES,
-        payload: configData,
+        payload: {
+            login_Header,
+            login_SubHeader
+        }
     };
 }
 

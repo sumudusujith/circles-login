@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { Box,  Text, Flex } from "rebass";
+
 import { Header1 } from "../../constants/Header/Header1";
 import { form_Dashboard } from "../../redux/reducers/exampleReducer";
 import { routesClass } from "../../routesClass";
 
-export const Dashboard = () => {
+export const Dashboard = ({dashboard_Header}) => {
   const [emailaddress, setEmailAddress1] = useState();
   const [name, setName] = useState();
   const [origin, setOrigin] = useState();
@@ -35,7 +37,8 @@ export const Dashboard = () => {
         color='#fff'
         fontSize='3rem'
         mb='2rem'
-        name={" Hello! I see you got through the login"}
+        name={dashboard_Header}
+        //name={" Hello! I see you got through the login"}
 
 
       />
@@ -76,21 +79,22 @@ export const Dashboard = () => {
     </Flex>
   );
 };
-// const mapStateToProps = (state) => {
-//   console.log("state", state);
-//   return {
-//     email: state.example.email,
-//     name: state.login.name,
-//     origin: state.login.origin,
-//   };
-// };
+const mapStateToProps = (state) => {
+  console.log("state", state);
+  return {
+    email: state.example.email,
+    name: state.login.name,
+    origin: state.login.origin,
+    dashboard_Header: state.cddValuesReducer.dashboard_Header,
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     form_Dashboard: () => {
-//       dispatch(formDashboard());
-//     },
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // form_Dashboard: () => {
+    //   dispatch(formDashboard());
+    // },
+  };
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, LOGIN, FORM_RESPONSE, SAGA_LOGIN, FORM_LOGIN, LOGIN_RESPONSE ,CDD_VALUES} from "../actions/actionTypes";
+import { INCREMENT, DECREMENT, LOGIN, FORM_RESPONSE, CDD_RESPONSE, SAGA_LOGIN, FORM_LOGIN, LOGIN_RESPONSE, CDD_VALUES } from "../actions/actionTypes";
 
 const initialState = {
     total: 0,
@@ -24,22 +24,29 @@ const formUser = {
 const configUser = {
     login_Header: null,
     login_SubHeader: null,
-    dashBoard_Header: null,
-  };
+    dashboard_Header: null,
+    dashboard_SubHeader: null,
+};
 
-  export function cddValuesReducer(state = configUser , action) {
+export function cddValuesReducer(state = configUser, action) {
     switch (action.type) {
-      case CDD_VALUES:
-        return {
-          ...state,
-          login_Header: action.payload.login_Header,
-          login_SubHeader: action.payload.login_SubHeader,
-          dashBoard_Header: action.payload.dashBoard_Header,
-        };
-      default:
-        return state;
+        case CDD_VALUES:
+            return {
+                ...state,
+                login_Header: action.payload.login_Header,
+                login_SubHeader: action.payload.login_SubHeader,
+                dashboard_Header: action.payload.dashboard_Header,
+                dashboard_SubHeader: action.payload.dashboard_SubHeader,
+            };
+        case CDD_RESPONSE:
+            return {
+                ...state,
+                cddResponse: action.payload,
+            };
+        default:
+            return state;
     }
-  }
+}
 
 export default function exampleReducer(state = initialState, action) {
 
@@ -109,8 +116,8 @@ export function sagaLoginReducer(state = sagaUser, action) {
             return {
                 ...state,
                 //email: action.payload.email,
-               // password: action.payload.password,
-               // loginResponse: action.payload,
+                // password: action.payload.password,
+                // loginResponse: action.payload,
 
             };
         default:

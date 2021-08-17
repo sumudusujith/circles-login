@@ -1,19 +1,24 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require('body-parser')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 // enable CORS - It’s an express middleware for enabling Cross-Origin Resource Sharing requests. Just because of it, We can access the API in different applications.
 //app.use(cors());
+
 app.use(cors(), express.urlencoded({ extended: false }));
+app.use(express.json())
 
 app.get("/app-settings", (req, res) => {
-  res.send({
+  res.json({
     login: {
-      login_Header: " cdd_test",
+      login_Header: "Ready to Take a Challenge",
+      login_SubHeader: "Login Here",
     },
     dashboard: {
-      dashboard_Header: "cdd_test2 ",
+      dashboard_Header: "Hey, I see you got through the login.",
+      dashboard_SubHeader: "Information",
     },
   });
 });
@@ -29,7 +34,7 @@ app.get("/user-service/user-details", (req, res) => {
 });
 
 
-
+//remove
 //validate the user credentials
 // app.get("/user-service/login/:email/:password", (req, res) => {
 //   const email = req.params.email;
@@ -65,17 +70,13 @@ app.get("/user-service/user-details", (req, res) => {
 
 
 
-app.post("/user-service/login/:email/:password",  (req, res) => {
-  const email = req.params.email;
-  const password = req.params.password;
-
-  console.log(email);
-  console.log(password);
+app.post("/user-service/login", (req, res) => {
   
-  // console.log(req.body);
 
-  // const email = req.body.email;
-  // const password = req.body.password;
+  console.log(req.body);
+
+  const email = req.body.email;
+  const password = req.body.password;
 
   console.log("email : ", email, "password: ", password);
   if (
@@ -86,18 +87,20 @@ app.post("/user-service/login/:email/:password",  (req, res) => {
       token: "123",
       message: `Hello from server! ${email}`,
     });
-  // } if (password !== "circles111") {
-  //   console.log("Oh no, Login is not working.");
-  //   res.json({
-  //     status: "fail",
-  //     message: "Password required."
-  //   });
-   }
-   else {
-    res.json({
-      status: "fail",
-      message: "Oh no, Login is not working.",
-    });
+    // } if (password !== "circles111") {
+    //   console.log("Oh no, Login is not working.");
+    //   res.json({
+    //     status: "fail",
+    //     message: "Password required."
+    //   });
+  }
+  else {
+    res.status(401).send(
+      {
+        status: "fail",
+        message: "Oh no, Login is not working.",
+      }
+    );
   }
 });
 
