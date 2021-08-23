@@ -10,7 +10,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors(), express.urlencoded({ extended: false }));
 app.use(express.json())
 
-app.get("/app-settings", (req, res) => {
+app.get("/app-settings", async (req, res) => {
+  await sleep(1000);
   res.json({
     login: {
       login_Header: "Ready to Take a Challenge",
@@ -34,44 +35,11 @@ app.get("/user-service/user-details", (req, res) => {
 });
 
 
-//remove
-//validate the user credentials
-// app.get("/user-service/login/:email/:password", (req, res) => {
-//   const email = req.params.email;
-//   const password = req.params.password;
-
-//   console.log(email);
-//   console.log(password);
-
-//   if (
-
-//     email === "admin@circles.asia" && password === "circles111"
-//   ) {
-//     console.log("Hooray, It's working.");
-//     res.json({
-//       token: "123",
-//       message: `Hello from server! ${email}`,
-//     });
-//     } if (password !== "circles111") {
-//       console.log("Oh no, Login is not working.");
-//       res.json({
-//         status: "fail",
-//         message: "Password required."
-//       });
-//   }
-
-//   else {
-//     res.json({
-//       status: "fail",
-//       message: "Oh no, Login is not working.",
-//     });
-//   }
-// });
 
 
 
-app.post("/user-service/login", (req, res) => {
-  
+app.post("/user-service/login",  (req, res) => {
+  //await sleep(1000);
 
   console.log(req.body);
 
@@ -108,6 +76,12 @@ app.post("/user-service/login", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on  http://localhost:5000 ${PORT}`);
 });
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
 
 
 

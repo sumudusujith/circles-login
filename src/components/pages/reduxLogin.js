@@ -16,7 +16,9 @@ const LoginForm = (props) => {
     submitting,
     configLogin,
     login_SubHeader,
-    login_Header
+    login_Header,
+    isLoading,
+    isError,
   } = props;
 
   useEffect(() => { // to call api
@@ -26,7 +28,9 @@ const LoginForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Header1
+      
+        {!isLoading ? (
+        <Header1
         name={login_Header}
         //name={"Ready to take a challenge?"}
         fontSize="4rem"
@@ -35,6 +39,8 @@ const LoginForm = (props) => {
         fontFamily="Candara"
         mb='2rem'
       />
+      ):("  LOADING___  ")}
+       {!isLoading ? (
       <Header1
         name={login_SubHeader}
         //name={"Login to pick a Challenge!"}
@@ -44,6 +50,7 @@ const LoginForm = (props) => {
         fontFamily="Verdana"
 
       />
+      ):("   LOADING   ")}
       <div>
         <label>First Name</label>
         <div>
@@ -96,22 +103,41 @@ const LoginForm = (props) => {
     </form>
   )
 }
+const selectlogin_Header = (state) => {
+  return state.configValuesReducer.configResponse?.login_Header;
+};
+const selectlogin_SubHeader = (state) => {
+  return state.configValuesReducer.configResponse?.login_SubHeader;
+};
+const selectisLoading = (state) => {
+  return state.configValuesReducer?.isLoading;
+};
 
 const mapStateToProps = (state) => {
-  console.log("state works!", state);
   return {
-    //no nee emil pw ,bcz its in  the state
-    // email: state.form?.loginForm?.values?.email,
-    //     password: state.form?.loginForm?.values?.password,
-    //loginResponse: state.sagaloginNew?.loginResponse?.status,
-    login_Header: state.configValuesReducer.configResponse?.login_Header,
-    login_SubHeader: state.configValuesReducer.configResponse?.login_SubHeader,
+    login_Header: selectlogin_Header(state),
+    login_SubHeader: selectlogin_SubHeader(state),
+    isLoading: selectisLoading(state),
+    
   };
 };
+// const mapStateToProps = (state) => {
+//   console.log("state works!", state);
+//   return {
+//     //no nee emil pw ,bcz its in  the state
+//     // email: state.form?.loginForm?.values?.email,
+//     //     password: state.form?.loginForm?.values?.password,
+//     //loginResponse: state.sagaloginNew?.loginResponse?.status,
+//     login_Header: state.configValuesReducer.configResponse?.login_Header,
+//     login_SubHeader: state.configValuesReducer.configResponse?.login_SubHeader,
+//     isLoading:state.configValuesReducer?.isLoading,
+//   };
+// };
 //const validations = (values) => {
 function mapDispatchToProps(dispatch, ownProps) {
 
   return {
+    
     configLogin: (login_Header, login_SubHeader) => {
       dispatch(getconfigAction(login_Header, login_SubHeader, () => {
         console.log("action works!");

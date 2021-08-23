@@ -9,6 +9,8 @@ import  Login  from "./components/pages/Login";
 import { Dashboard } from "./components/pages/Dashboard";
 import { routesClass } from "./routesClass";
 import reduxLogin from "./components/pages/reduxLogin";
+import  NotFoundPage from "./components/pages/NotFoundPage";
+
 //import history from './history'
 //import { History } from 'react-router';
 export const Routes = () => {
@@ -25,6 +27,7 @@ export const Routes = () => {
           <Route exact path="/dashboard" component={Dashboard} />
 
           <Redirect exact from="/" to="login" />
+          <Route component={NotFoundPage} />
         </Switch>
       </Router>
     </div>
