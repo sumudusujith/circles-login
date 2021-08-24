@@ -5,7 +5,7 @@ import { compose } from 'redux';
 
 import { formDashboardAction, getconfigAction } from "../../redux/actions";
 import { Header1 } from "../../constants/Header/RebassHeader";
-
+import { reselectlogin_Header,reselectlogin_SubHeader,reselectisLoading } from "../../redux/selectors";
 const LoginForm = (props) => {
   console.log("PROPS", props);
 
@@ -103,21 +103,21 @@ const LoginForm = (props) => {
     </form>
   )
 }
-const selectlogin_Header = (state) => {
-  return state.configValuesReducer.configResponse?.login_Header;
-};
-const selectlogin_SubHeader = (state) => {
-  return state.configValuesReducer.configResponse?.login_SubHeader;
-};
-const selectisLoading = (state) => {
-  return state.configValuesReducer?.isLoading;
-};
+// const selectlogin_Header = (state) => {
+//   return state.configValuesReducer.configResponse?.login_Header;
+// };
+// const selectlogin_SubHeader = (state) => {
+//   return state.configValuesReducer.configResponse?.login_SubHeader;
+// };
+// const selectisLoading = (state) => {
+//   return state.configValuesReducer?.isLoading;
+// };
 
 const mapStateToProps = (state) => {
   return {
-    login_Header: selectlogin_Header(state),
-    login_SubHeader: selectlogin_SubHeader(state),
-    isLoading: selectisLoading(state),
+    login_Header: reselectlogin_Header(state),
+    login_SubHeader: reselectlogin_SubHeader(state),
+    isLoading: reselectisLoading(state),
     
   };
 };
