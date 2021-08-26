@@ -1,11 +1,11 @@
-import { INCREMENT_ACTION, DECREMENT_ACTION, USER_LOGIN_ACTION,SAGA_LOGIN_ACTION,FORM_LOGIN_DATA_ACTION, CONFIG_SETTINGS_ACTION } from "./actionTypes"
+import { INCREMENT_ACTION, DECREMENT_ACTION, USER_LOGIN_ACTION, SAGA_LOGIN_ACTION, FORM_LOGIN_DATA_ACTION, CONFIG_SETTINGS_ACTION, ERROR_ACTION,LOADER_ACTION } from "./actionTypes"
 //actions
 export function incrementBy(payload) {
     return { type: INCREMENT_ACTION, payload }
 }
 
 export function decrementBy(payload) {
-    return { type:  DECREMENT_ACTION, payload }
+    return { type: DECREMENT_ACTION, payload }
 }
 
 export function login(email, password) {
@@ -40,15 +40,35 @@ export function formDashboardAction(email, password, callbackFn) {
     };
 }
 
-export function getconfigAction(login_Header, login_SubHeader) {
+export function getconfigAction(login_Header, login_SubHeader,dashboard_Header,dashboard_SubHeader) {
     return {
         type: CONFIG_SETTINGS_ACTION,
         payload: {
             login_Header,
-            login_SubHeader
+            login_SubHeader,
+            dashboard_Header,
+            dashboard_SubHeader
         }
     };
 }
+export function errorAction(configData) {
+    return {
+        type: ERROR_ACTION,
+        payload: {
+            configData
+
+        }
+    };
+}
+export function getLoadAction(configData) {
+    return {
+        type: LOADER_ACTION,
+        payload: {configData
+            
+        }
+    };
+}
+
 
 
 
